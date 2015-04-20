@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-var User = require('./user.js');
+var User = mongoose.model('User');
 
 var schema = new mongoose.Schema({
     title: String,
@@ -11,7 +11,6 @@ var schema = new mongoose.Schema({
     Language: String,
     category: String,
     genre: String,
-    seller: User,
     price: Number
 
 });

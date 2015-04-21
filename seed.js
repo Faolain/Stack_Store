@@ -23,6 +23,7 @@ var mongoose = require('mongoose');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
 var Animal = mongoose.model('Animal');
+
 var q = require('q');
 var chalk = require('chalk');
 
@@ -30,9 +31,11 @@ var getCurrentUserData = function () {
     return q.ninvoke(User, 'find', {});
 };
 
+
 var getCurrentAnimalData = function () {
     return q.ninvoke(Animal, 'find', {});
 };
+
 
 var seedUsers = function () {
 
@@ -50,6 +53,7 @@ var seedUsers = function () {
     return q.invoke(User, 'create', users);
 
 };
+
 
 var seedAnimals = function () {
 
@@ -226,6 +230,7 @@ connectToDb.then(function () {
         process.kill(1);
     });
 });
+
 
 connectToDb.then(function () {
  

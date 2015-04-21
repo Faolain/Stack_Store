@@ -1,11 +1,12 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
+var app = angular.module('exotic-animals', ['ui.router', 'fsaPreBuilt', 'LocalStorageModule']);
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, localStorageServiceProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
+    localStorageServiceProvider.setPrefix('exotic-animals');
 });
 
 // This app.run is for controlling access to specific states.

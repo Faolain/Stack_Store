@@ -23,15 +23,13 @@ var mongoose = require('mongoose');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
 var Animal = mongoose.model('Animal');
-
-
-
 var q = require('q');
 var chalk = require('chalk');
 
 var getCurrentUserData = function () {
     return q.ninvoke(User, 'find', {});
 };
+
 var getCurrentAnimalData = function () {
     return q.ninvoke(Animal, 'find', {});
 };
@@ -52,6 +50,7 @@ var seedUsers = function () {
     return q.invoke(User, 'create', users);
 
 };
+
 var seedAnimals = function () {
 
     var animals = [
@@ -207,7 +206,7 @@ var seedAnimals = function () {
         },
     ];
 
-    return q.invoke(Animal, 'create', books);
+    return q.invoke(Animal, 'create', animals);
 
 };
 
@@ -226,20 +225,24 @@ connectToDb.then(function () {
         console.error(err);
         process.kill(1);
     });
-    // getCurrentUserData().then(function (users) {
-    //     if (users.length === 0) {
-    //         return seedUsers();
-    //     } else {
-    //         console.log(chalk.magenta('Seems to already be user data, exiting!'));
-    //         process.kill(0);
-    //     }
-    // }).then(function (users) {
-    //     console.log(chalk.green('Seed successful!'));
-    //     console.log(users);
-    //     process.kill(0);
-    // }).catch(function (err) {
-    //     console.error(err);
-    //     process.kill(1);
-    // });
-    
+});
+
+connectToDb.then(function () {
+ 
+    getCurrentUserData().then(function (users) {
+        if (users.length === 0) {
+            return seedUsers();
+        } else {
+            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            process.kill(0);
+        }
+    }).then(function (users) {
+        console.log(chalk.green('Seed successful!'));
+        console.log(users);
+        process.kill(0);
+    }).catch(function (err) {
+        console.error(err);
+        process.kill(1);
+    });
+
 });

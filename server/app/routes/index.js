@@ -5,8 +5,11 @@ module.exports = router;
 router.use('/tutorial', require('./tutorial'));
 router.use('/members', require('./members'));
 
-//Books router
-router.use('/books', require('./books'));
+//Animals router
+router.use('/animals', require('./animals'));
+
+//Search router
+router.use('/search', require('./search'));
 
 // Make sure this is after all of
 // the registered routes!

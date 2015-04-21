@@ -24,10 +24,10 @@
 		<hr>
 		<div class="row">
 
-		<div ng-repeat="pet in pets" class="item">
-		<a href=""><img src={{pet.imgUrl}}></a>
-		<a href=""><label>{{pet.name}}</label></a>
-		<a href="">Add to Cart</a>
+		<div ng-repeat="pet in pets" ng-controller="itemController" class="item">
+			<a href=""><img src={{pet.imgUrl}}></a>
+			<a href=""><label>{{pet.name}}</label></a>
+			<a href="" ng-click="shoppingCart.addToCart(pet)">Add to Cart</a>
 		</div>
 
 

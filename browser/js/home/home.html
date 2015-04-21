@@ -15,21 +15,20 @@
 		
 		<div class="row">
 		<hr><p>Filter by Category:</p>
-		<input type="radio" class="category" name="cat" value="All" checked>All</input>
-		<input type="radio" class="category" name="cat" value="Mammal" >Mammal</input>
-		<input type="radio" class="category" name="cat" value="Bird" >Bird</input>
-		<input type="radio" class="category" name="cat" value="Reptile" >Reptile</input>
+		<input type="radio" class="category" ng-model="category.name" value="" checked>All</input>
+		<input type="radio" class="category" ng-model="category.name" value="Mammal" >Mammal</input>
+		<input type="radio" class="category" ng-model="category.name" value="Bird" >Bird</input>
+		<input type="radio" class="category" ng-model="category.name" value="Reptile" >Reptile</input>
 		</div>
 
 		<hr>
 		<div class="row">
 
-		<div ng-repeat="pet in pets" ng-controller="itemController" class="item">
+
+		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
 			<a href=""><img src={{pet.imgUrl}}></a>
 			<a href=""><label>{{pet.name}}</label></a>
 			<a href="" ng-click="addToCart(pet);">Add to Cart</a>
-		</div>
-
 
 		</div>
 	</div>

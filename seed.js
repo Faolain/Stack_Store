@@ -24,16 +24,18 @@ var connectToDb = require('./server/db');
 var User = mongoose.model('User');
 var Animal = mongoose.model('Animal');
 
-
 var q = require('q');
 var chalk = require('chalk');
 
 var getCurrentUserData = function () {
     return q.ninvoke(User, 'find', {});
 };
-// var getCurrentBookData = function () {
-//     return q.ninvoke(Animal, 'find', {});
-// };
+
+
+var getCurrentAnimalData = function () {
+    return q.ninvoke(Animal, 'find', {});
+};
+
 
 var seedUsers = function () {
 
@@ -51,85 +53,187 @@ var seedUsers = function () {
     return q.invoke(User, 'create', users);
 
 };
-// var seedBooks = function () {
 
-//     var books = [
-//         {
-//             title: 'Harry Potter and Prisoner of Azkaban',
-//             author: 'Rowling, J.K',
-//             ISBN: 9780747545927,
-//             yearPublished: 2002,
-//             Publisher: 'Bloomsbury Publishing PLC',
-//             Language: 'English',
-//             genre: 'Young Adult',
-//             //seller: 'Ben',
-//             price: 3.99
-//         },
-//         {
-//             title: 'Beyond Good and Evil',
-//             author: 'Nietzsche, Friedrich',
-//             ISBN: 9780394703374,
-//             yearPublished: 1966,
-//             Publisher: 'Vintage',
-//             Language: 'English',
-//             genre: 'Classics',
-//            // seller: "Philosopher's Books",
-//             price: 7.99
-//         },
-//         {
-//             title: 'Crime and Punishment',
-//             author: 'Dostoyevsky, Fyodor',
-//             ISBN: 9780486454115,
-//             yearPublished: 2000,
-//             Publisher: 'Wordsworth',
-//             Language: 'English',
-//             genre: 'Classics',
-//             //seller: "Philosopher's Books",
-//             price: 7.99
-//         },
-//         {
-//             title: 'Infinite Jest',
-//             author: 'Wallace, David Foster',
-//             ISBN: 0316920045,
-//             yearPublished: 1991,
-//             Publisher: 'Little, Brown and Company',
-//             Language: 'English',
-//             genre: 'Contemporary Classics',
-//             //seller: "Philosopher's Books",
-//             price: 12
-//         },
-//         {
-//             title: 'Einstein: His Life and Universe',
-//             author: 'Isaacson, Walter',
-//             ISBN: 124943290045,
-//             yearPublished: 2003,
-//             Publisher: 'Penguin',
-//             Language: 'English',
-//             genre: 'Autobiography',
-//             //seller: "Scientist Paperbacks",
-//             price: 11
-//         }
-//     ];
 
-//     return q.invoke(Book, 'create', books);
+var seedAnimals = function () {
 
-// };
+    var animals = [
+        {
+            name: "Madagascar Hissing Cockroach",
+            specie: 'String',
+            rarity: 'Abundant',
+            height: 2,
+            weight: 0.01,
+            price: 3,
+            imgUrl: "http://www.hoglezoo.org/wp-content/themes/hoglezoo/images/animal_finder/HissingCockroach11.jpg"
+
+        },
+         {
+            name: "Tarantula",
+            specie: "Anthropod",
+            rarity: 'Abundant',
+            height: 2,
+            weight: 0.1,
+            price: 15,
+            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/Pet-Tarantulas-51.jpg"
+
+        },
+         {
+            name: "Emperor Scorpions",
+            specie: "Anthropod",
+            rarity: 'Abundant',
+            height: 2,
+            weight: 2,
+            price: 20,
+            imgUrl: "http://static4.therichestimages.com/cdn/1024/768/90/cw/wp-content/uploads/2014/05/11b3d5t1.jpg"
+
+        },
+         {
+            name: "Bearded Dragon",
+            specie: "Reptile",
+            rarity: 'Abundant',
+            height: 4,
+            weight: 3,
+            price: 100,
+            imgUrl: "http://a-z-animals.com/media/animals/images/original/bearded_dragon1.jpg"
+
+        },
+         {
+            name: "Sugar Glider",
+            specie: "Marsupial",
+            rarity: 'Abundant',
+            height: 15,
+            weight: 1.5,
+            price: 22.50,
+            imgUrl: "http://www.drsfostersmith.com/images/Articles/a-2175-glider.jpg"
+
+        },
+        {
+            name: "Skunk",
+            specie: 'Mammal',
+            rarity: 'Abundant',
+            height: 10,
+            weight: 8,
+            price: 500,
+            imgUrl: "http://fusion.ddmcdn.com/kids/uploads/skunk-smell-300.jpg"
+
+        },
+        {
+            name: "Capybaras",
+            specie: 'Rodent',
+            rarity: 'Abundant',
+            height: 40,
+            weight: 40,
+            price: 600,
+            imgUrl: "http://a-z-animals.com/media/animals/images/original/capybara5.jpg"
+
+        },
+         {
+            name: "Toucan",
+            specie: 'Bird',
+            rarity: 'Rare',
+            height: 22,
+            weight: 7.6,
+            price: 8000,
+            imgUrl: "http://www.toucansworld.com/uploads/3/0/1/3/3013606/3703068_orig.jpg?374"
+
+        },
+        {
+            name: "Kinkajou",
+            specie: 'Mammal',
+            rarity: 'Rare',
+            height: 33,
+            weight: 50,
+            price: 2000,
+            imgUrl: "http://static3.therichestimages.com/cdn/920/702/90/cw/wp-content/uploads/2014/05/kinkajou.jpg"
+
+        },
+        {
+            name: "Chimpanzee",
+            specie: "Primate",
+            rarity: 'Rare',
+            height: 80 ,
+            weight: 80,
+            price: 60000,
+            imgUrl: "http://pin.primate.wisc.edu/fs/sheets/images/96lg.jpg"
+
+        },
+        {
+            name: "Hedgehog",
+            specie: "Rodent",
+            rarity: 'Abundant',
+            height: 10,
+            weight: 2.5,
+            price: 300,
+            imgUrl: "http://static2.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Hedgehog-27722525.jpg"
+
+        },
+        {
+            name: "Serval",
+            specie: "Cat",
+            rarity: 'Rare',
+            height: 50,
+            weight: 25,
+            price: 2500,
+            imgUrl: "http://static5.therichestimages.com/cdn/1077/695/90/cw/wp-content/uploads/2014/05/savannah_cat-serval-cat1.jpg"
+
+        },
+        {
+            name: "Wallaby",
+            specie: 'Marsupial',
+            rarity: 'Abundant',
+            height: 80,
+            weight: 60,
+            price: 3000,
+            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Female-Agile-Wallaby-Macropus-70557547.jpg"
+
+        },
+        {
+            name: "Squirrel Monkey",
+            specie: "Primate",
+            rarity: 'Abundant',
+            height: 35,
+            weight: 12,
+            price: 8000,
+            imgUrl: "http://static9.therichestimages.com/cdn/792/993/90/cw/wp-content/uploads/2014/05/squirrel-monkey-png1.jpg"
+
+        },
+         {
+            name: "Hyacinth Macaw",
+            specie: 'Parrot',
+            rarity: 'Scarce',
+            height: 40,
+            weight: 7,
+            price: 12000,
+            imgUrl: "http://static6.therichestimages.com/cdn/1077/868/90/cw/wp-content/uploads/2014/05/bigstock-HYACINTH-MACAW-777524.jpg"
+
+        },
+    ];
+
+    return q.invoke(Animal, 'create', animals);
+
+};
 
 connectToDb.then(function () {
-    // getCurrentBookData().then(function (books) {
-    //     if (books.length === 0) {
-    //         return seedBooks();
-    //     } else {
-    //         console.log(chalk.magenta('Seems to already be book data, exiting!'));
-    //         process.kill(0);
-    //     }
-    // }).then(function () {
-    //     console.log(chalk.green('Seed successful!'));
-    //     process.kill(0);
-    // }).catch(function (err) {
-    //     console.error(err);
-    //     process.kill(1);
-    // });
+    getCurrentAnimalData().then(function (animals) {
+        if (animals.length === 0) {
+            return seedAnimals();
+        } else {
+            console.log(chalk.magenta('Seems to already be Animal data, exiting!'));
+            process.kill(0);
+        }
+    }).then(function () {
+        console.log(chalk.green('Seed successful!'));
+        process.kill(0);
+    }).catch(function (err) {
+        console.error(err);
+        process.kill(1);
+    });
+});
+
+
+connectToDb.then(function () {
+ 
     getCurrentUserData().then(function (users) {
         if (users.length === 0) {
             return seedUsers();

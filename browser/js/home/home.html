@@ -24,32 +24,28 @@
 		<hr>
 		<div class="row">
 
-		<div ng-repeat="pet in pets | filter:category.name" class="item">
-		<a href=""><img src={{pet.imgUrl}}></a>
-		<a href=""><label>{{pet.name}}</label></a>
-		<a href="">Add to Cart</a>
-		</div>
 
+		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
+			<a href=""><img src={{pet.imgUrl}}></a>
+			<a href=""><label>{{pet.name}}</label></a>
+			<a href="" ng-click="addToCart(pet);">Add to Cart</a>
 
 		</div>
 	</div>
 
-	<div class="col-lg-3">
+	<div ng-controller="ShoppingCartController"class="col-lg-3">
 		<div class="row">
 			<p>Shopping cart:</p>
 		</div>
-		<div class="row">
-			<p>Item Description: Gorilla</p>
-			<p>Item Quantitie: <input size="2"></input></p>
-			<p><a href="">Remove Item</a></p>
+		<div ng-repeat="item in items" class="row">
+			<p>Item Description: {{item.name}}</p>
+			<p>Item Quantity:  <input size="2" ng-model="itemQuantity" placeholder="{{item.quantity}}"></input><button ng-click="updateQuantity(item, itemQuantity)">Update</button></p>
+			<p><a ng-click="removeItem(item)">Remove Item</a></p>
 		</div>
-		<div class="row">
-			<p>Item Description: Gorilla</p>
-			<p>Item Quantitie: <input size="2"></input></p>
-			<p><a href="">Remove Item</a></p>
-		</div>
+
 		<div class="row">
 			<button> Checkout </button>
+			<button ng-click="clearCart()">Clear Cart</button>
 		</div>
 	</div>
 

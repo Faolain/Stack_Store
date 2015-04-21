@@ -2,7 +2,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
-        //templateUrl: 'js/home/home.html'
-        templateUrl: 'js/PetStoreFront/petStoreFront.html'
+        controller: "PetStoreFrontController",
+        templateUrl: 'js/home/home.html'
     });
 });

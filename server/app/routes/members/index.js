@@ -30,3 +30,11 @@ router.get('/secret-stash', ensureAuthenticated, function (req, res) {
     res.send(_.shuffle(theStash));
 
 });
+
+router.post('/signup', function(req,res){
+
+});
+
+router.get('/signup', function(req,res){
+
+});

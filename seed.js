@@ -233,7 +233,7 @@ connectToDb.then(function () {
 
 
 connectToDb.then(function () {
- 
+
     getCurrentUserData().then(function (users) {
         if (users.length === 0) {
             return seedUsers();

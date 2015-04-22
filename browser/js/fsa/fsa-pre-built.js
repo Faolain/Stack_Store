@@ -101,6 +101,14 @@
             });
         };
 
+        this.signUp = function(registerInfo) {
+            return $http.post('/register', registerInfo)
+                .then(onSuccessfulLogin)
+                .catch(function (response) {
+                    return $q.reject({ message: 'Invalid signUp credentials.' });
+                });
+        }//added by us
+
         function onSuccessfulLogin(response) {
             var data = response.data;
             Session.create(data.id, data.user);

@@ -23,7 +23,9 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
-    }
+    },
+    cart: { type: mongoose.Schema.ObjectId, ref: 'ShoppingCart' },
+    orders: [{type: mongoose.Schema.ObjectId, ref: 'Order'}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

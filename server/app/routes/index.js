@@ -8,6 +8,15 @@ router.use('/members', require('./members'));
 //Animals router
 router.use('/animals', require('./animals'));
 
+//Orders router
+router.use('/orders', require('./orders'));
+
+//Admin router
+router.use('/admin', require('./admin'));
+
+//Admin router
+router.use('/shoppingcart', require('./shoppingCart'));
+
 //Search router
 router.use('/search', require('./search'));
 

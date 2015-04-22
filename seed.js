@@ -65,7 +65,8 @@ var seedAnimals = function () {
             height: 2,
             weight: 0.01,
             price: 3,
-            imgUrl: "http://www.hoglezoo.org/wp-content/themes/hoglezoo/images/animal_finder/HissingCockroach11.jpg"
+            imgUrl: "http://www.hoglezoo.org/wp-content/themes/hoglezoo/images/animal_finder/HissingCockroach11.jpg",
+            discontinued: true
 
         },
          {
@@ -75,8 +76,8 @@ var seedAnimals = function () {
             height: 2,
             weight: 0.1,
             price: 15,
-            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/Pet-Tarantulas-51.jpg"
-
+            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/Pet-Tarantulas-51.jpg",
+            discontinued: false
         },
          {
             name: "Emperor Scorpions",
@@ -85,7 +86,8 @@ var seedAnimals = function () {
             height: 2,
             weight: 2,
             price: 20,
-            imgUrl: "http://static4.therichestimages.com/cdn/1024/768/90/cw/wp-content/uploads/2014/05/11b3d5t1.jpg"
+            imgUrl: "http://static4.therichestimages.com/cdn/1024/768/90/cw/wp-content/uploads/2014/05/11b3d5t1.jpg",
+            discontinued: false
 
         },
          {
@@ -95,7 +97,8 @@ var seedAnimals = function () {
             height: 4,
             weight: 3,
             price: 100,
-            imgUrl: "http://a-z-animals.com/media/animals/images/original/bearded_dragon1.jpg"
+            imgUrl: "http://a-z-animals.com/media/animals/images/original/bearded_dragon1.jpg",
+            discontinued: false
 
         },
          {
@@ -105,7 +108,8 @@ var seedAnimals = function () {
             height: 15,
             weight: 1.5,
             price: 22.50,
-            imgUrl: "http://www.drsfostersmith.com/images/Articles/a-2175-glider.jpg"
+            imgUrl: "http://www.drsfostersmith.com/images/Articles/a-2175-glider.jpg",
+            discontinued: false
 
         },
         {
@@ -115,7 +119,8 @@ var seedAnimals = function () {
             height: 10,
             weight: 8,
             price: 500,
-            imgUrl: "http://fusion.ddmcdn.com/kids/uploads/skunk-smell-300.jpg"
+            imgUrl: "http://fusion.ddmcdn.com/kids/uploads/skunk-smell-300.jpg",
+            discontinued: false
 
         },
         {
@@ -125,7 +130,8 @@ var seedAnimals = function () {
             height: 40,
             weight: 40,
             price: 600,
-            imgUrl: "http://a-z-animals.com/media/animals/images/original/capybara5.jpg"
+            imgUrl: "http://a-z-animals.com/media/animals/images/original/capybara5.jpg",
+            discontinued: false
 
         },
          {
@@ -135,7 +141,8 @@ var seedAnimals = function () {
             height: 22,
             weight: 7.6,
             price: 8000,
-            imgUrl: "http://www.toucansworld.com/uploads/3/0/1/3/3013606/3703068_orig.jpg?374"
+            imgUrl: "http://www.toucansworld.com/uploads/3/0/1/3/3013606/3703068_orig.jpg?374",
+            discontinued: false
 
         },
         {
@@ -145,7 +152,8 @@ var seedAnimals = function () {
             height: 33,
             weight: 50,
             price: 2000,
-            imgUrl: "http://static3.therichestimages.com/cdn/920/702/90/cw/wp-content/uploads/2014/05/kinkajou.jpg"
+            imgUrl: "http://static3.therichestimages.com/cdn/920/702/90/cw/wp-content/uploads/2014/05/kinkajou.jpg",
+            discontinued: false
 
         },
         {
@@ -155,7 +163,8 @@ var seedAnimals = function () {
             height: 80 ,
             weight: 80,
             price: 60000,
-            imgUrl: "http://pin.primate.wisc.edu/fs/sheets/images/96lg.jpg"
+            imgUrl: "http://pin.primate.wisc.edu/fs/sheets/images/96lg.jpg",
+            discontinued: false
 
         },
         {
@@ -165,7 +174,8 @@ var seedAnimals = function () {
             height: 10,
             weight: 2.5,
             price: 300,
-            imgUrl: "http://static2.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Hedgehog-27722525.jpg"
+            imgUrl: "http://static2.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Hedgehog-27722525.jpg",
+            discontinued: false
 
         },
         {
@@ -175,7 +185,8 @@ var seedAnimals = function () {
             height: 50,
             weight: 25,
             price: 2500,
-            imgUrl: "http://static5.therichestimages.com/cdn/1077/695/90/cw/wp-content/uploads/2014/05/savannah_cat-serval-cat1.jpg"
+            imgUrl: "http://static5.therichestimages.com/cdn/1077/695/90/cw/wp-content/uploads/2014/05/savannah_cat-serval-cat1.jpg",
+            discontinued: false
 
         },
         {
@@ -185,7 +196,8 @@ var seedAnimals = function () {
             height: 80,
             weight: 60,
             price: 3000,
-            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Female-Agile-Wallaby-Macropus-70557547.jpg"
+            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/bigstock-Female-Agile-Wallaby-Macropus-70557547.jpg",
+            discontinued: false
 
         },
         {
@@ -195,7 +207,8 @@ var seedAnimals = function () {
             height: 35,
             weight: 12,
             price: 8000,
-            imgUrl: "http://static9.therichestimages.com/cdn/792/993/90/cw/wp-content/uploads/2014/05/squirrel-monkey-png1.jpg"
+            imgUrl: "http://static9.therichestimages.com/cdn/792/993/90/cw/wp-content/uploads/2014/05/squirrel-monkey-png1.jpg",
+            discontinued: false
 
         },
          {
@@ -205,7 +218,8 @@ var seedAnimals = function () {
             height: 40,
             weight: 7,
             price: 12000,
-            imgUrl: "http://static6.therichestimages.com/cdn/1077/868/90/cw/wp-content/uploads/2014/05/bigstock-HYACINTH-MACAW-777524.jpg"
+            imgUrl: "http://static6.therichestimages.com/cdn/1077/868/90/cw/wp-content/uploads/2014/05/bigstock-HYACINTH-MACAW-777524.jpg",
+            discontinued: false
 
         },
     ];

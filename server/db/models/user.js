@@ -24,6 +24,7 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     },
+    admin: Boolean,
     cart: { type: mongoose.Schema.ObjectId, ref: 'ShoppingCart' },
     orders: [{type: mongoose.Schema.ObjectId, ref: 'Order'}]
 });

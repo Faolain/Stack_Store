@@ -2,6 +2,7 @@ var router = require('express').Router();
 var Animals = require('../../../db/models/animal.js');
 var Orders = require('../../../db/models/order.js');
 var Users = require('../../../db/models/user.js');
+var mongoose = require('mongoose');
 module.exports = router;
 
 //==========Animal List ========================//
@@ -67,10 +68,14 @@ router.put('/changeStatus/:id', function (req, res, next) {
 
 //Update a Particular User Password
 router.put('/changeUserPassword/:id', function (req, res, next) {
-  Users.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-     if (err) return next(err);
-     res.send(user);
-   });
+
+    Users.findById(req.params.id, function (err, user){
+      user.password = req.body.password;
+      user.save(function(err, savedUser){
+         if (err) return next(err);
+         res.send(savedUser);
+      });
+    });
 });
 
 //Get all the orders for Admin
@@ -82,8 +87,12 @@ router.get('/getAllUsers', function (req, res, next) {
 
 //Ability to Make a user an Admin
 router.put('/promoteUser/:id', function (req, res, next) {
-  Users.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-     if (err) return next(err);
-     res.send(user);
-   });
+
+    Users.findById(req.params.id, function (err, user){
+      user.admin = true;
+      user.save(function(err, savedUser){
+         if (err) return next(err);
+         res.send(savedUser);
+      });
+    });
 });

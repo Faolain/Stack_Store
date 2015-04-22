@@ -13,7 +13,7 @@ router.get('/:id', function (req, res) {
 
 //Sends Array of Entire List of Animals
 router.get('/', function (req, res) {
-  Animals.find({}, function(err, animals) {
+  Animals.find({discontinued: false}, function(err, animals) {
     res.send(animals);
   });
 });

@@ -13,6 +13,9 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // anywhere the User model needs to be used.
 require('./models/user');
 require('./models/animal');
+require('./models/orderItem');
+require('./models/order');
+
 
 var startDbPromise = new Q(function (resolve, reject) {
     db.on('open', resolve);

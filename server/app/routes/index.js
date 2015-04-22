@@ -11,6 +11,9 @@ router.use('/animals', require('./animals'));
 //Search router
 router.use('/search', require('./search'));
 
+//Admin router
+router.use('/admin', require('./admin'));
+
 // Make sure this is after all of
 // the registered routes!
 router.use(function (req, res) {

@@ -12,7 +12,8 @@ var schema = new mongoose.Schema({
     price: Number,
     imgUrl: String,
     stock: Number,
-    tags: [String]
+    tags: [String],
+    discontinued: Boolean
 });
 
 module.exports = mongoose.model('Animal', schema);

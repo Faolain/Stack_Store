@@ -11,7 +11,11 @@ router.use('/animals', require('./animals'));
 //Search router
 router.use('/search', require('./search'));
 
+
 router.use("/cart",require('./shoppingCart'));
+//Admin router
+router.use('/admin', require('./admin'));
+
 
 // Make sure this is after all of
 // the registered routes!

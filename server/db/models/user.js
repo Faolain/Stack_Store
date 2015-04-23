@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+      type: String,
+      unique: true
     },
     password: {
         type: String
@@ -24,6 +25,7 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     },
+    admin: Boolean,
     cart: { type: mongoose.Schema.ObjectId, ref: 'ShoppingCart' },
     orders: [{type: mongoose.Schema.ObjectId, ref: 'Order'}]
 });
@@ -59,4 +61,4 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('User', schema);
+module.exports = mongoose.model('User', schema);

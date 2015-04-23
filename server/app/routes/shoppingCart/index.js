@@ -69,74 +69,7 @@ router.put('/updateCart/:cartId', function(req,res, next){
 				console.error('shopping cart error',err);
 			});
 	});
-	
-});
-
-
-router.put('/removeItem/:id', function(req,res){
-	var id = req.params.id;
-
-
-
 
 });
-
-
-//update cart item quantities
-router.put('/updateCart', function(req,res){
-
-
-});
-
-
-	//move this into model as 'static' method.... 
-	//update quantity method on shoppingCart Item... deal with in callbacks
-
-	// ShoppingCartItem.findByIdAsync(itemId).then(function(item){
-	// 	if(item)
-	// 		console.log('EXISTING',item);
-	// 	else {
-
-	// 	}
-	// });
-	
-
-	// console.log('itemId',itemId);
-	// ShoppingCart.findByIdAndUpdate(cartId, {$push: {"items" : itemId}}, function(err,cart){
-	// 	if(err) return next(err);
-	// 	console.log('cart',cart);
-	// 	res.send(cart);
-	// });
-
-// ShoppingCart.findOneAsync({_id:cartId}).then(function(cart){
-	// 	var items = cart.items;
-	// 	var found = false;
-	// 	// for(var i =0;i<items.length;i++){
-	// 	// 	//if the pet already exists in the shopping cart
-	// 	// 	if(items[i]._id == petId){
-	// 	// 		found = true;
-	// 	// 		items[i].quantity++;
-	// 	// 	}
-	// 	// }
-	// 	//if the item does not exist in the shopping cart
-	// 	if(!found){
-	// 		var newCartItem = new ShoppingCartItem({item: petId, quantity:1});
-	// 		newCartItem.saveAsync()
-	// 		.then(function(err,data){
-	// 			console.log('err,data',err,data);
-	// 		});
-		
-
-	// 		//we need to then update the shopping cart
-
-	// 	}
-		//if the item does not exist, we need to create new Shopping Cart Item and
-		//add it to Shopping Cart
-		// else{
-
-		// }
-		//if item in array update quantity otherwise add to array.
-
-
 
 

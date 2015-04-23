@@ -2,19 +2,13 @@
 var router = require('express').Router();
 module.exports = router;
 
-router.use('/tutorial', require('./tutorial'));
-router.use('/members', require('./members'));
 
 //Animals router
 router.use('/animals', require('./animals'));
-
-//Search router
-router.use('/search', require('./search'));
-
-
+router.use('/orders', require('./orders'));
+router.use('/users', require('./users'));
 router.use("/cart",require('./shoppingCart'));
-//Admin router
-router.use('/admin', require('./admin'));
+
 
 
 // Make sure this is after all of

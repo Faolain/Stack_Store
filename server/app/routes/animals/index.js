@@ -3,7 +3,17 @@ var Animals = require('../../../db/models/animal.js');
 var Reviews = require('../../../db/models/review.js');
 module.exports = router;
 
-//Sends Particular Animal ID
+var ensureAdmin = function (req, res, next) {
+   if (req.user.admin) {
+       next();
+   } else {
+       res.status(403).end();
+   }
+};
+
+
+
+//get one animal by id
 router.get('/:id', function (req, res) {
   var id = req.params.id;
 
@@ -12,15 +22,44 @@ router.get('/:id', function (req, res) {
   });
 });
 
-//Sends Array of Entire List of Animals
+//get all animals
 router.get('/', function (req, res) {
-  Animals.find({discontinued: false}, function(err, animals) {
+  Animals.find({}, function(err, animals) {
     res.send(animals);
   });
 });
 
+
+//get available animals
+router.get('/getStock', function (req, res) {
+  Animals.find({discontinued:false}, function(err, animals) {
+    res.send(animals);
+  });
+});
+
+//Create Animal
+router.post('/createAnimal', ensureAdmin, function (req, res, next) {
+  console.log('check the user',req.user);
+
+  Animals.create(req.body, function (err, animal) {
+    if (err) return next(err);
+    // saved!
+    res.send(animal);
+  });
+});
+
+//Edit Animal
+router.put('/editAnimal/:id', ensureAdmin, function (req, res, next) {
+
+  Animals.findByIdAndUpdate(req.params.id, req.body, function(err, animal){
+     if (err) return next(err);
+     res.send(animal);
+   });
+});
+
+
 //Sends Array of Entire List of Animals
-router.post('/addReview/:id', function (req, res, next) {
+router.post('/addReview/:id', ensureAdmin, function (req, res, next) {
 
   var reviewObj = {};
   reviewObj.content = req.body.content;

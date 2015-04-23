@@ -132,7 +132,7 @@
 
         this.id = null;
         this.user = null;
-
+        //add admin property - this can be checked with other service.
         this.create = function (sessionId, user) {
             this.id = sessionId;
             this.user = user;

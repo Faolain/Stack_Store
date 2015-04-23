@@ -1,7 +1,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var ShoppingCart = require('../../../db/models/shoppingCart.js');
-var ShoppingCartItem = require('../../../db/models/shoppingCartItem.js');
 var bluebird = require('bluebird');
 bluebird.promisifyAll(mongoose);
 
@@ -63,7 +62,7 @@ router.put('/updateCart/:cartId', function(req,res, next){
 				console.error('shopping cart error',err);
 			});
 	}).catch(function(err){
-		console.error('problem with findByAsync',err);
+		console.error('problem with findByAsync',err);git
 	});
 
 });

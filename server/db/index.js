@@ -4,7 +4,6 @@ var path = require('path');
 var chalk = require('chalk');
 
 var DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
-
 var mongoose = require('mongoose');
 var db = mongoose.connect(DATABASE_URI).connection;
 
@@ -16,9 +15,7 @@ require('./models/review');
 require('./models/animal');
 require('./models/orderItem');
 require('./models/order');
-require('./models/shoppingCartItem');
 require('./models/shoppingCart');
-
 
 
 var startDbPromise = new Q(function (resolve, reject) {

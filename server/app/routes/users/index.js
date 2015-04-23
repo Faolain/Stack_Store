@@ -12,7 +12,7 @@ var ensureAdmin = function (req, res, next) {
 };
 
 //Update a Particular User Password
-router.put('/changeUserPassword/:id', ensureAdmin, function (req, res, next) {
+router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
 
     Users.findById(req.params.id, function (err, user){
       user.password = req.body.password;
@@ -23,7 +23,7 @@ router.put('/changeUserPassword/:id', ensureAdmin, function (req, res, next) {
     });
 });
 
-//Get all the orders for Admin
+//get all users
 router.get('/', ensureAdmin, function (req, res, next) {
   Users.find({}, function(err, users) {
     res.send(users);
@@ -31,7 +31,7 @@ router.get('/', ensureAdmin, function (req, res, next) {
 });
 
 //Ability to Make a user an Admin
-router.put('/promoteUser/:id', ensureAdmin, function (req, res, next) {
+router.put('/:id/promoteUser', ensureAdmin, function (req, res, next) {
 
     Users.findById(req.params.id, function (err, user){
       user.admin = true;

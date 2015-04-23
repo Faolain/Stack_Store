@@ -1,7 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var review = mongoose.model('review');
 
 var schema = new mongoose.Schema({
     name: {type: String, required: true, unique: true},

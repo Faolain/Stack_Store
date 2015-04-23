@@ -22,23 +22,18 @@ router.get('/:id', function (req, res) {
   });
 });
 
-//get all animals
+//get available animals and also filters by name for the search
 router.get('/', function (req, res) {
-  Animals.find({}, function(err, animals) {
-    res.send(animals);
-  });
-});
-
-
-//get available animals
-router.get('/getStock', function (req, res) {
-  Animals.find({discontinued:false}, function(err, animals) {
+  var obj = {};
+  if (!req.user.admin) obj.discontinued = false;
+  if (req.query.search) obj.name = req.query.search;
+  Animals.find(obj, function(err, animals) {
     res.send(animals);
   });
 });
 
 //Create Animal
-router.post('/createAnimal', ensureAdmin, function (req, res, next) {
+router.post('/', ensureAdmin, function (req, res, next) {
   console.log('check the user',req.user);
 
   Animals.create(req.body, function (err, animal) {
@@ -49,7 +44,7 @@ router.post('/createAnimal', ensureAdmin, function (req, res, next) {
 });
 
 //Edit Animal
-router.put('/editAnimal/:id', ensureAdmin, function (req, res, next) {
+router.put('/:id', ensureAdmin, function (req, res, next) {
 
   Animals.findByIdAndUpdate(req.params.id, req.body, function(err, animal){
      if (err) return next(err);
@@ -59,16 +54,16 @@ router.put('/editAnimal/:id', ensureAdmin, function (req, res, next) {
 
 
 //Sends Array of Entire List of Animals
-router.post('/addReview/:id', ensureAdmin, function (req, res, next) {
+router.post('/:id/addReview', ensureAdmin, function (req, res, next) {
 
   var reviewObj = {};
   reviewObj.content = req.body.content;
-  // reviewObj.user = req.session.user._id;
+  reviewObj.user = req.session.passport.user;
   reviewObj.date = new Date();
 
   Reviews.create(reviewObj, function (err, review) {
     if (err) return next(err);
-    // saved!
+    
     Animals.findById(req.params.id, function (err, animal){
       animal.reviews.push(review._id);
       animal.save( function(err, savedAnimal) {

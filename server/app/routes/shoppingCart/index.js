@@ -22,12 +22,6 @@ router.get('/:id', function (req, res) {
   });
 });
 
-//Get All Carts
-router.get('/', function (req, res) {
-  ShoppingCart.find({}, function(err, cart) {
-    res.send(cart);
-  });
-});
 
 //Create new cart
 router.post('/newCart', function(req,res){
@@ -68,6 +62,8 @@ router.put('/updateCart/:cartId', function(req,res, next){
 			}).catch(function(err){
 				console.error('shopping cart error',err);
 			});
+	}).catch(function(err){
+		console.error('problem with findByAsync',err);
 	});
 
 });

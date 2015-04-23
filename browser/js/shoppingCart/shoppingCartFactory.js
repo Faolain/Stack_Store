@@ -39,6 +39,10 @@ app.factory('ShoppingCart', function($http, localStorageService) {
         localStorageService.set(updatedPet.name,updatedPet);
 
 
+      },
+      getCartId: function(){
+        //based on current logged in user, this function will return user ID
+
       }
 
 

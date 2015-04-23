@@ -3,8 +3,20 @@ var mongoose = require('mongoose');
 var ShoppingCartItem = mongoose.model('ShoppingCartItem');
 
 var schema = new mongoose.Schema({
-    items: [ShoppingCartItem],
+    items: [{
+	    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Animal'},
+	    quantity: Number,
+	    price: Number
+
+	}]
 
 });
+
+//create method that checks to see if item exists in shopping cart
+// schema.methods = {
+// 	modifyObject: function (){
+// 		console.log(this)
+// 	}
+// }
 
 module.exports = mongoose.model('ShoppingCart', schema);

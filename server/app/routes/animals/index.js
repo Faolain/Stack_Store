@@ -32,13 +32,15 @@ router.get('/', function (req, res) {
   });
 });
 
-//Create Animal
+
+
+
 router.post('/', ensureAdmin, function (req, res, next) {
   console.log('check the user',req.user);
 
+
   Animals.create(req.body, function (err, animal) {
     if (err) return next(err);
-    // saved!
     res.send(animal);
   });
 });
@@ -63,7 +65,7 @@ router.post('/:id/addReview', ensureAdmin, function (req, res, next) {
 
   Reviews.create(reviewObj, function (err, review) {
     if (err) return next(err);
-    
+
     Animals.findById(req.params.id, function (err, animal){
       animal.reviews.push(review._id);
       animal.save( function(err, savedAnimal) {

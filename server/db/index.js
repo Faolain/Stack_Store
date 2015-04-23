@@ -16,6 +16,9 @@ require('./models/review');
 require('./models/animal');
 require('./models/orderItem');
 require('./models/order');
+require('./models/shoppingCartItem');
+require('./models/shoppingCart');
+
 
 
 var startDbPromise = new Q(function (resolve, reject) {

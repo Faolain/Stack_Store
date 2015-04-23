@@ -39,11 +39,10 @@ router.get('/getStock', function (req, res) {
 
 //Create Animal
 router.post('/createAnimal', ensureAdmin, function (req, res, next) {
-  console.log('check the user',req.user);
+
 
   Animals.create(req.body, function (err, animal) {
     if (err) return next(err);
-    // saved!
     res.send(animal);
   });
 });

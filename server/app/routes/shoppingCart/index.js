@@ -6,6 +6,18 @@ bluebird.promisifyAll(mongoose);
 
 module.exports = router;
 
+
+//Create new cart
+router.post('/', function(req,res){
+	var newCart = new ShoppingCart({items: []});
+	newCart.save(function(err,data){
+		console.log("data",data);
+		res.send(data);
+	});
+
+});
+
+
 //Get All Carts
 router.get('/', function (req, res) {
   ShoppingCart.find({}, function(err, cart) {
@@ -21,34 +33,13 @@ router.get('/:id', function (req, res) {
   });
 });
 
-
-//Create new cart
-router.post('/newCart', function(req,res){
-	var newCart = new ShoppingCart({items: []});
-	newCart.save(function(err,data){
-		console.log("data",data);
-		res.send(data);
-	});
-
-});
-
-//Delete cart
-router.delete('/:id', function(req,res){
-	var id = req.params.id;
-	ShoppingCart.remove({_id: id}, function(err,data){
-		if(err) console.error(err);
-		else if(data) res.send("DELETED!");
-	});
-
-});
-
 //update cart
-router.put('/updateCart/:cartId', function(req,res, next){
+router.put('/:cartId', function(req,res, next){
 	console.log('hello');
 	var cartId = req.params.cartId;
 	var petId = req.params.petId;
 	var cartItems = req.body;
-	
+
 	cartItems = cartItems.map(function(item){
 		return {item: item._id.toString(), quantity: item.quantity,price:item.price};
 	});
@@ -62,7 +53,17 @@ router.put('/updateCart/:cartId', function(req,res, next){
 				console.error('shopping cart error',err);
 			});
 	}).catch(function(err){
-		console.error('problem with findByAsync',err);git
+		console.error('problem with findByAsync',err);
+	});
+
+});
+
+//Delete cart
+router.delete('/:id', function(req,res){
+	var id = req.params.id;
+	ShoppingCart.remove({_id: id}, function(err,data){
+		if(err) console.error(err);
+		else if(data) res.send("DELETED!");
 	});
 
 });

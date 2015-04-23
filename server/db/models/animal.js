@@ -4,13 +4,13 @@ var User = mongoose.model('User');
 var review = mongoose.model('review');
 
 var schema = new mongoose.Schema({
-    name: String,
+    name: {type: String, required: true, unique: true},
     specie: String,
-    rarity: String,
+    description: {type: String, required: true},
     reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],
     height: Number,
     weight: Number,
-    price: Number,
+    price: {type: Number, required: true},
     imgUrl: String,
     stock: Number,
     tags: [String],

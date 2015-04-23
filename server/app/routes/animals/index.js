@@ -16,7 +16,6 @@ var ensureAdmin = function (req, res, next) {
 //get one animal by id
 router.get('/:id', function (req, res) {
   var id = req.params.id;
-
   Animals.findById(id, function (err, animal){
     res.send(animal);
   });
@@ -25,7 +24,8 @@ router.get('/:id', function (req, res) {
 //get available animals and also filters by name for the search
 router.get('/', function (req, res) {
   var obj = {};
-  if (!req.user.admin) obj.discontinued = false;
+  //if (!req.user.admin) obj.discontinued = false;
+
   if (req.query.search) obj.name = req.query.search;
   Animals.find(obj, function(err, animals) {
     res.send(animals);
@@ -56,23 +56,19 @@ router.put('/:id', ensureAdmin, function (req, res, next) {
 
 
 //Sends Array of Entire List of Animals
-router.post('/:id/addReview', ensureAdmin, function (req, res, next) {
+router.post('/:id/addReview', function (req, res, next) {
+  //create methods and statics here
 
-  var reviewObj = {};
-  reviewObj.content = req.body.content;
-  reviewObj.user = req.session.passport.user;
-  reviewObj.date = new Date();
+  var review = new Reviews(
+    {content: 'hello',
+    user: req.session.passport.user,
+    date:new Date(),
+    animal: req.params.id});
 
-  Reviews.create(reviewObj, function (err, review) {
+  review.save(function (err, review) {
     if (err) return next(err);
-
-    Animals.findById(req.params.id, function (err, animal){
-      animal.reviews.push(review._id);
-      animal.save( function(err, savedAnimal) {
-        res.send(savedAnimal);
-      });
-    });
-
+    else {console.log('succes',review);
+    res.send(review);}
   });
 });
 

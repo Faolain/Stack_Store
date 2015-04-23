@@ -1,11 +1,17 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var ShoppingCart = require('../../../db/models/shoppingCart.js');
-var bluebird = require('bluebird');
-bluebird.promisifyAll(mongoose);
 
-module.exports = router;
 
+
+
+var ensureAdmin = function (req, res, next) {
+   if (req.user.admin) {
+       next();
+   } else {
+       res.status(403).end();
+   }
+};
 
 //Create new cart
 router.post('/', function(req,res){
@@ -26,7 +32,7 @@ router.get('/', function (req, res) {
 });
 
 //Get particular shopping cart
-router.get('/:id', function (req, res) {
+router.get('/:id', ensureAdmin, function (req, res) {
   var id = req.params.id;
   ShoppingCart.findById(id, function (err, cart){
     res.send(cart);
@@ -35,26 +41,16 @@ router.get('/:id', function (req, res) {
 
 //update cart
 router.put('/:cartId', function(req,res, next){
-	console.log('hello');
+
 	var cartId = req.params.cartId;
 	var petId = req.params.petId;
 	var cartItems = req.body;
 
-	cartItems = cartItems.map(function(item){
-		return {item: item._id.toString(), quantity: item.quantity,price:item.price};
+	ShoppingCart.updateShoppingCart(cartItems,cartId,function(err,data){
+		//console.log('err',err,'data',data);
+		//error handling
 	});
 
-	ShoppingCart.findByIdAsync(cartId).then(function(cart){
-		console.log('before',cart.items);
-		cart.items = cartItems;
-		console.log('after',cart.items);
-		cart.saveAsync().then(function(cart){res.send(cart);
-			}).catch(function(err){
-				console.error('shopping cart error',err);
-			});
-	}).catch(function(err){
-		console.error('problem with findByAsync',err);
-	});
 
 });
 
@@ -67,5 +63,6 @@ router.delete('/:id', function(req,res){
 	});
 
 });
+module.exports = router;
 
 

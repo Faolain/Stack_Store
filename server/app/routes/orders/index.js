@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Order = require('../../../db/models/order.js');
+var User = require('../../../db/models/user.js');
 
 var ensureAdmin = function (req, res, next) {
    if (req.user.admin) {
@@ -9,9 +10,17 @@ var ensureAdmin = function (req, res, next) {
        res.status(403).end();
    }
 };
+var ensureAuthenticated = function (req, res, next) {
+   if (req.isAuthenticated()) {
+       next();
+   } else {
+       res.status(401).end();
+   }
+};
+
 
 //create Order
-router.post('/', ensureAdmin, function(req,res,next){
+router.post('/', ensureAuthenticated, function(req,res,next){
     Order.create(req.body, function (err, order) {
     if (err) return next(err);
     // saved!
@@ -22,15 +31,20 @@ router.post('/', ensureAdmin, function(req,res,next){
 
 //Get all the orders for Admin
 router.get('/', function (req, res) {
+  //if it is an admin get all items
+  if(req.user.admin){
+      Order.find({status: req.body.status}, function(err, orders) {
+        res.send(orders);
+      });
 
-  var obj = {};
+  }
+  User.findById(req.session.passport.user, function(err, user){
+    res.send(user.orders);
 
-  if(req.body.status) obj.status = req.body.status;
-
-  Order.find(obj, function(err, orders) {
-    res.send(orders);
   });
+
 });
+
 
 //Get Order Details
 router.get('/:id', function (req, res) {
@@ -44,7 +58,7 @@ router.get('/:id', function (req, res) {
 
 
 //Updating Status on Order
-router.put('/:id', function (req, res, next) {
+router.put('/:id', ensureAdmin, function (req, res, next) {
 
   Order.findByIdAndUpdate(req.params.id, req.body, function(err, order){
      if (err) return next(err);
@@ -53,7 +67,7 @@ router.put('/:id', function (req, res, next) {
 });
 
 //deleting an order
-router.delete('/:id', function(req,res,next){
+router.delete('/:id', ensureAdmin, function(req,res,next){
     Order.findByIdAndRemove(req.params.id, function(err){
         return next(err);
     });

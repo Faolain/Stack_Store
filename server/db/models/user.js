@@ -54,6 +54,13 @@ schema.pre('save', function (next) {
 
 });
 
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
+schema.path('email').validate(validateEmail, "The email must be valid");
+
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
 

@@ -34,15 +34,9 @@ describe('on Shopping Cart Create', function () {
      var createAnimal = function(){
       return Animal.create({
             name: "Tarantula",
-            specie: "Anthropod",
-            rarity: 'Abundant',
             description: "Scary",
-            height: 2,
-            weight: 0.1,
             price: 1,
-            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/Pet-Tarantulas-51.jpg",
-            discontinued: false
-        });
+     });
     };
     createAnimal()
     .then(function(animal){
@@ -60,7 +54,7 @@ describe('on Shopping Cart Create', function () {
         done(err);
       });
 
-    });
+    
     it('test model', function (done) {
           expect(retrievedCart.items[0].quantity).to.equal(1);
           expect(retrievedCart.items[0].price).to.equal(10);
@@ -100,75 +94,43 @@ describe('on Shopping Cart Create', function () {
 
 });
   describe('update ShoppingCart with static method', function () {
- var cartId;
+ var cartId, retrievedAnimals;
 
   beforeEach('creating shopping cart before updating', function (done) {
-    var cartItems = [ { _id: '55391c3cae22f8d71569115e',
+    var cartItems = [ 
+    {
     name: 'Hyacinth Macaw',
-    specie: 'Parrot',
-    rarity: 'Scarce',
-    height: 40,
-    weight: 7,
     price: 12000,
-    imgUrl: 'http://static6.therichestimages.com/cdn/1077/868/90/cw/wp-content/uploads/2014/05/bigstock-HYACINTH-MACAW-777524.jpg',
-    __v: 0,
-    tags: [],
-    reviews: [],
-    quantity: 2 },
-  { _id: '55391c3cae22f8d71569115b',
+    description: "happy"
+  },
+  {
     name: 'Serval',
-    specie: 'Cat',
-    rarity: 'Rare',
-    height: 50,
-    weight: 25,
     price: 2500,
-    imgUrl: 'http://static5.therichestimages.com/cdn/1077/695/90/cw/wp-content/uploads/2014/05/savannah_cat-serval-cat1.jpg',
-    __v: 0,
-    tags: [],
-    reviews: [],
-    quantity: 1 },
-  { _id: '55391c3cae22f8d71569115d',
+    description: "sad"
+  },
+  {
     name: 'Squirrel Monkey',
-    specie: 'Primate',
-    rarity: 'Abundant',
-    height: 35,
-    weight: 12,
     price: 8000,
-    imgUrl: 'http://static9.therichestimages.com/cdn/792/993/90/cw/wp-content/uploads/2014/05/squirrel-monkey-png1.jpg',
-    __v: 0,
-    tags: [],
-    reviews: [],
-    quantity: 1 } ];
+    description: "YES"
+    }];
 
-     var createAnimal = function(){
-      return Animal.create({
-            name: "Tarantula",
-            specie: "Anthropod",
-            rarity: 'Abundant',
-            description: "Scary",
-            height: 2,
-            weight: 0.1,
-            price: 1,
-            imgUrl: "http://static0.therichestimages.com/cdn/1077/718/90/cw/wp-content/uploads/2014/05/Pet-Tarantulas-51.jpg",
-            discontinued: false
-        });
-    };
-    createAnimal()
+     Animal.create(cartItems)
     .then(function(animal){
+
       return animal;
     })
     .then(function(animal){
-        return ShoppingCart.create({items: [{item:animal._id,quantity:1,price:10}]});
+      retrievedAnimals = animal;
+        return ShoppingCart.create({items: [{item:animal[0]._id,quantity:1,price:10}]});
       })
     .then(function(cart){
-        ShoppingCart.updateShoppingCart(cartItems,cart._id,function(err,cart){
-          cart.populate('items.item',function(err,cart){
-            retrievedCart = cart;
-            console.log('populated',cart);
+        ShoppingCart.updateShoppingCart(retrievedAnimals,cart._id,function(err,cart){
+           retrievedCart = cart;
+          ShoppingCart.populate(cart,'items.item',function(err,cart){
             done();
           });
         });
-        
+
       })
     .then(null, function(err){
         done(err);
@@ -176,7 +138,15 @@ describe('on Shopping Cart Create', function () {
 
     });
     it('test model', function (done) {
+          console.log('here is my cart',retrievedCart.items);
           expect(retrievedCart.items.length).to.equal(3);
+          expect(retrievedCart.items[0].item.name).to.equal("Hyacinth Macaw");
+          expect(retrievedCart.items[0].item.price).to.equal(12000);
+          expect(retrievedCart.items[0].item.description).to.equal("happy");
+          expect(retrievedCart.items[1].item.name).to.equal("Serval");
+          expect(retrievedCart.items[1].item.price).to.equal(2500);
+          expect(retrievedCart.items[1].item.description).to.equal("sad");
+
           done();
     });
 
@@ -184,6 +154,8 @@ describe('on Shopping Cart Create', function () {
 
 
   });
-      
+
+
+});
 
 });

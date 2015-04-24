@@ -59,9 +59,9 @@ router.post('/:id/addReview', function (req, res, next) {
   //create methods and statics here
 
   var review = new Reviews(
-    {content: 'hello',
+    {content: req.body.content,
     user: req.session.passport.user,
-    date:new Date(),
+    date: new Date(),
     animal: req.params.id});
 
   review.save(function (err, review) {

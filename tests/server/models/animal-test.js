@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 
 require('../../../server/db/models/user');
 
+
 require('../../../server/db/models/animal');
 require('../../../server/db/models/review');
 
@@ -33,7 +34,9 @@ describe('on creation', function () {
 
   beforeEach('Crear Animal antes de testear', function (done) {
     var createAnimal = function () {
-      return Animal.create({ name: 'Monster', description: 'This is the craziest monster', price: 783, specie: 'Ghost'});
+      return Animal.create({ name: 'Monster', 
+        description: 'This is the craziest monster', price: 783,
+        specie: 'Ghost'});
       };
 
       createAnimal().then(function (animalDB) {
@@ -52,15 +55,15 @@ describe('on creation', function () {
                     done();
             });
 
-            // it('should return a list length where specie is not null', function (done) {
-            //     Animal.find({specie : {'$e': null}}, function (err, animals) {
-            //         if (err) console.error(err);
-            //         else console.log("GOOD!", animals);
-            //         expect(animals.length).to.equal(1);
-            //         done();
-            //     });
-            // });
+            xit('should belong at list to a category', function (done) {
+                    expect(a.specie).to.not.equal(null);
+                    done();
+            });
 
+             xit('sIf there is no photo, there must be a placeholder photo used', function (done) {
+                    expect(a.imgUrl).to.equal("http://www.placecage.com/c/200/300");
+                    done();
+            });
 
 
         });

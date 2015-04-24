@@ -10,17 +10,14 @@ var schema = new mongoose.Schema({
 });
 
 schema.post('save',function(review){
-	console.log("animalId",review.animal);
 	Animal.findById(review.animal, function (err, animal){
 		  if(err) console.error(err);
 		  else if(animal){
-		  	console.log('animal found',review);
 		  	animal.reviews.push(review._id);
           	animal.save();
-
 		  }
 		  else{
-		  	return console.error('animal not found');
+		  	return console.error('Animal not found');
 		  }
           
         });

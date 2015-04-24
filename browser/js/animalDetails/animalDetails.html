@@ -37,13 +37,14 @@
 		<div class="row">
 			<p>Reviews: </p>
 			<ul ng-repeat="review in pet.reviews">
-				<li>{{review.content}}, {{review.date}}, {{review.user}}</li>
+				<li>{{review.content}}, {{review.date | date: 'medium'}}, {{review.user}}</li>
 			</ul>
-			<form id="review-form" name="reviewForm" ng-submit="reviewForm.$valid && sendReview(review)">
 
-		    <div class="form-group">
+			<form id="review-form" name="reviewForm" ng-submit="sendReview(newReview)">
+
+		    <div ng-if="isLoggedIn()" class="form-group">
 		        <label for="content">Content:</label>
-		        <input type="textarea" ng-model="review.content" id="content">
+		        <input type="textarea" ng-model="newReview.content" id="content">
 		    </div>
 
     		<button type="submit" class="btn btn-default">Submit Review</button>

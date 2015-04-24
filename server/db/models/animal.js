@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate');
 var User = mongoose.model('User');
 
 var schema = new mongoose.Schema({
@@ -16,5 +17,6 @@ var schema = new mongoose.Schema({
     discontinued: Boolean
 });
 
+schema.plugin(deepPopulate);
 
 module.exports = mongoose.model('Animal', schema);

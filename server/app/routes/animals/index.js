@@ -1,4 +1,5 @@
 var router = require('express').Router();
+var deepPopulate = require('mongoose-deep-populate');
 var Animals = require('../../../db/models/animal.js');
 var Reviews = require('../../../db/models/review.js');
 module.exports = router;
@@ -17,7 +18,10 @@ var ensureAdmin = function (req, res, next) {
 router.get('/:id', function (req, res) {
   var id = req.params.id;
   Animals.findById(id, function (err, animal){
-    res.send(animal);
+    animal.deepPopulate('reviews', 'user', function(err, animalPopulated){
+      //console.log(animalPopulated);
+        res.send(animalPopulated);
+    })
   });
 });
 
@@ -60,10 +64,12 @@ router.post('/:id/addReview', function (req, res, next) {
   //create methods and statics here
 
   var review = new Reviews(
-    {content: req.body.content,
-    user: req.session.passport.user,
-    date: new Date(),
-    animal: req.params.id});
+    {
+      content: req.body.content,
+      user: req.session.passport.user,
+      date: new Date(),
+      animal: req.params.id
+    });
 
   review.save(function (err, review) {
     if (err) return next(err);

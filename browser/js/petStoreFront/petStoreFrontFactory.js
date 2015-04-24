@@ -27,6 +27,14 @@ app.factory('PetStoreFrontFactory', function ($http) {
                 return response.data;
             });
 
+        }, createReview: function ( content, id ) {
+
+            return $http.post( '/api/animals/'+id+"/addReview", { content: content } )
+            .then(function (response) {
+                console.log(response.data);
+                return response.data;
+            });
+
         }
 // ,
 //         postFlashCards: function(card) {

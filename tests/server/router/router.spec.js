@@ -29,9 +29,25 @@ describe('http requests', function() {
 
   // make sure it gets something from the root
   describe('GET /animals', function() {
-    xit('should get 200 on index', function(done) {
+    it('should get 200 on index', function(done) {
       agent
         .get('/api/animals')
+        .expect(200, done);
+    });
+  });
+
+  describe('GET /cart', function() {
+    it('should get 200 on index', function(done) {
+      agent
+        .get('/api/cart')
+        .expect(200, done);
+    });
+  });
+
+   describe('create /cart', function() {
+    it('should get 200 on index', function(done) {
+      agent
+        .post('/api/cart')
         .expect(200, done);
     });
   });

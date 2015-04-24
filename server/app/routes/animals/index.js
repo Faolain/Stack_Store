@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
   var obj = {};
   //if (!req.user.admin) obj.discontinued = false;
   if (req.query.search) obj.name = req.query.search;
-  Animals.find(obj, function(err, animals) {
+  Animals.find({}, function(err, animals) {
     res.send(animals);
   });
 });

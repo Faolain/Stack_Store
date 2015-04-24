@@ -24,7 +24,7 @@ router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
 });
 
 //get all users
-router.get('/', ensureAdmin, function (req, res, next) {
+router.get('/',  function (req, res, next) {
   Users.find({}, function(err, users) {
     res.send(users);
   });

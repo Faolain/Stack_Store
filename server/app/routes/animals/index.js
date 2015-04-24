@@ -25,7 +25,6 @@ router.get('/:id', function (req, res) {
 router.get('/', function (req, res) {
   var obj = {};
   //if (!req.user.admin) obj.discontinued = false;
-
   if (req.query.search) obj.name = req.query.search;
   Animals.find(obj, function(err, animals) {
     res.send(animals);
@@ -72,6 +71,11 @@ router.post('/:id/addReview', function (req, res, next) {
   });
 });
 
-
+router.delete('/:id',function(req,res,next){
+  Animals.findByIdAndRemove(req.params.id, function(err,data){
+        res.send(data);
+        return next(err);
+    });
+});
 
 

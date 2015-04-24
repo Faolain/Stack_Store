@@ -6,13 +6,15 @@ var expect = require('chai').expect;
 var mongoose = require('mongoose');
 
 require('../../../server/db/models/user');
-require('../../../server/db/models/review');
+
 require('../../../server/db/models/animal');
+require('../../../server/db/models/review');
 
 
 var User = mongoose.model('User');
-var review = mongoose.model('review');
+
 var Animal = mongoose.model('Animal');
+var review = mongoose.model('review');
 
 
 describe('Animal model', function () {
@@ -43,7 +45,7 @@ describe('on creation', function () {
       });
     });
 
-            it('should have a title, a description and a price', function (done) {
+            xit('should have a title, a description and a price', function (done) {
                       expect(a.name).to.equal("Monster");
                       expect(a.description).to.equal("This is the craziest monster");
                       expect(a.price).to.equal(783);

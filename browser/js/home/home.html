@@ -3,6 +3,8 @@
     <rando-greeting></rando-greeting>
 </section-->
 <section>
+
+
 <div id="front" class="container">
 
 	<div class="col-lg-9">
@@ -26,10 +28,9 @@
 
 
 		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
-			<a href=""><img src={{pet.imgUrl}}></a>
-			<a href=""><label>{{pet.name}}</label></a>
+			<a ui-sref="details({animalID:pet._id})"><img src={{pet.imgUrl}}></a>
+			<a ui-sref="details({animalID:pet._id})"><label>{{pet.name}}</label></a>
 			<a href="" ng-click="addToCart(pet);">Add to Cart</a>
-
 		</div>
 	</div>
 

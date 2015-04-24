@@ -24,6 +24,8 @@ module.exports = function (app) {
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
 
+        console.log(req.body);
+
         var authCb = function (err, user) {
 
             if (err) return next(err);

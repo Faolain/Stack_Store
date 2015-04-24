@@ -20,6 +20,13 @@ app.factory('PetStoreFrontFactory', function ($http) {
                 return response.data;
             });
 
+        }, getPetByID: function (id) {
+
+            return $http.get('/api/animals/'+id).then(function (response) {
+                console.log(response.data);
+                return response.data;
+            });
+
         }
 // ,
 //         postFlashCards: function(card) {

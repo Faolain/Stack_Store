@@ -105,6 +105,10 @@ describe('User model', function () {
                 return User.create({ email: 'obama@gmail.com', password: 'potus' });
             };
 
+            var createInvalidUser = function () {
+                return User.create({ email: 'obamagmail.com', password: 'potus' });
+            };
+
             beforeEach(function () {
                 encryptSpy = sinon.spy(User, 'encryptPassword');
                 saltSpy = sinon.spy(User, 'generateSalt');
@@ -113,6 +117,12 @@ describe('User model', function () {
             afterEach(function () {
                 encryptSpy.restore();
                 saltSpy.restore();
+            });
+
+            it('should call User with a valid email', function (done) {
+                    console.log(createInvalidUser());
+                    //expect(createInvalidUser()).to.be.equal("The email must be valid");
+                    done();  
             });
 
             it('should call User.encryptPassword with the given password and generated salt', function (done) {

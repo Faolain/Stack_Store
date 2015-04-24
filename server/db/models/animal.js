@@ -10,10 +10,11 @@ var schema = new mongoose.Schema({
     height: Number,
     weight: Number,
     price: {type: Number, required: true},
-    imgUrl: String,
+    imgUrl: {type: String, default: "http://www.placecage.com/c/200/300"},
     stock: Number,
     tags: [String],
     discontinued: Boolean
 });
+
 
 module.exports = mongoose.model('Animal', schema);

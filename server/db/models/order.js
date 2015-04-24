@@ -1,7 +1,6 @@
 'use strict';
 var mongoose = require('mongoose'),
-      Schema = mongoose.Schema,
-      orderItem = mongoose.model('orderItem');
+      Schema = mongoose.Schema;
 
 var schema = new mongoose.Schema({
     status: String,

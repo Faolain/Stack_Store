@@ -1,0 +1,32 @@
+<section id="users"> 
+<div id="front" class="container">
+	<div class="col-lg-12">
+	<div class="row">
+		<table>
+			<tr>
+				<th>User Email</th>
+				<th>Admin status</th>
+				<th>Change Password</th>
+			</tr>
+		<tr ng-repeat="user in users" ng-controller="UsersController">
+			<td>{{user.email}}</td>
+			<td ng-if="user.admin === true">Yes</td>
+			<td ng-if="user.admin !== true">
+				<button ng-click="promoteToAdmin(user)">Promote to admin</button>
+			</td>
+
+			<td ng-if="user.admin === true"></td>
+			<td ng-if="user.admin !== true">
+				<button ng-hide="data.showDisplay" ng-click="data.showDisplay = true">Change User Password</button>
+				<form ng-show="data.showDisplay" ng-submit="changePassword(user, data)">
+					<input placeholder="New Password" ng-model="data.newPassword" size="25"></input>
+					<button type="submit" class="btn btn-warning">Confirm change</button>
+				</form>
+			</td>
+		</tr>
+		</table>
+	</div>
+	</div>
+	
+</div>
+</section>

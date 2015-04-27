@@ -12,9 +12,9 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // anywhere the User model needs to be used.
 require('./models/user');
 require('./models/animal');
+require('./models/category');
 require('./models/review');
-
-
+require('./models/animal_category');
 
 require('./models/orderItem');
 require('./models/order');

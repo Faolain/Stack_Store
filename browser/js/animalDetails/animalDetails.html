@@ -13,7 +13,7 @@
 		</div>
 		<div class="row">
 			<img src="{{pet.imgUrl}}"></img>
-			<a href="" ng-click="addToCart(pet);">Add to Cart</a>
+			<a href="" ng-click="addToCart(pet)">Add to Cart</a>
 		</div>
 		<div class="row">
 			<p>Animal Height: </p>
@@ -41,9 +41,9 @@
 				<li>{{review.content}}, {{review.date | date: 'medium'}}, {{review.user.email}}</li>
 			</ul>
 
-			<form id="review-form" name="reviewForm" ng-submit="sendReview(newReview)">
+			<form ng-if="isLoggedIn()" id="review-form" name="reviewForm" ng-submit="sendReview(newReview)">
 
-		    <div ng-if="isLoggedIn()" class="form-group">
+		    <div class="form-group">
 		        <label for="content">Content:</label>
 		        <input type="textarea" ng-model="newReview.content" id="content">
 		    </div>

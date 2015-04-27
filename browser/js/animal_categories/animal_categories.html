@@ -1,0 +1,31 @@
+<section id="categories"> 
+<div class="container">
+	<div class="col-lg-12">
+		<div class="row">
+		<h2>Categories avaliable</h2>
+		
+		<div ng-repeat="category in categories" ng-controller="AnimalCategoriesController">
+
+			<h3>{{category.name}}</h3>
+			<table><tr>
+				<td ng-repeat="subCategory in category.values">
+					{{subCategory}}
+	    		</td>
+			</tr>
+			<tr>
+				<td ng-repeat="e in category.matches track by $index" >
+					<input type="checkbox" ng-model="category.matches[$index]"></input>
+	    		</td>
+	    	</tr>
+		</table>
+
+			
+		</div>
+		<hr>
+		<button ng-click="updateCategories()" class="btn btn-success">Update categories</button>
+	</div>
+
+	</div>
+	
+</div>
+</section>

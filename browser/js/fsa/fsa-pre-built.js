@@ -67,6 +67,10 @@
             return !!Session.user;
         };
 
+        this.isAdmin = function () {
+            return (!!Session.user && Session.user.admin);
+        };//added by Miguel to check if the user is an Admin user
+
         this.getLoggedInUser = function () {
 
             // If an authenticated session exists, we

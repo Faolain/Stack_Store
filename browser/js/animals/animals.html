@@ -1,0 +1,66 @@
+<section id="animals"> 
+<div id="front" class="container">
+	<div class="col-lg-12">
+		<div class="row">
+		
+		<button ng-hide="data.createAnimal" ng-click="data.createAnimal = true">
+			Create a new animal</button>
+		<h2 ng-show="data.createAnimal">New Animal</h2>
+		<form ng-show="data.createAnimal" ng-submit="createNewAnimal(data)">
+
+			<input required placeholder="Animal's name" ng-model="data.newName" size="40"></input>
+			</br>
+			<textarea required rows="3" cols="50" placeholder="Animal's description"
+				ng-model="data.newDescription"></textarea></br>
+			<input required placeholder="Price" ng-model="data.newPrice" size="7"></input></br>
+			<input placeholder="Stock" ng-model="data.newStock" size="7"></input></br>
+			
+			<button type="submit" class="btn btn-default">Create Animal</button>
+		</form>
+	</div>
+	
+	<hr>
+	
+	<div class="row">
+		<table>
+			<tr>
+				<th>Animal Name</th><th>Description</th><th>Price</th>
+				<th>Stock</th><th></th><th></th><th></th>
+			</tr>
+		<tr ng-repeat="animal in animals" ng-controller="AnimalsController">
+			<!-- Showing display -->
+			<td ng-if="!animal.beingEdited">{{animal.name}}</td>
+			<td ng-if="!animal.beingEdited">{{animal.description}}</td>
+			<td ng-if="!animal.beingEdited">{{animal.price}}</td>
+			<td ng-if="!animal.beingEdited">{{animal.stock}}</td>
+			<td ng-if="!animal.beingEdited"><a><button ng-click="edit(animal)">Edit animal</button></a>
+			</td>
+
+			<!-- Editing display -->
+			<form>
+			<td ng-if="animal.beingEdited">
+				<input required placeholder="Animal's name" ng-model="animal.name" size="25"></input></td>
+			<td ng-if="animal.beingEdited">
+					<textarea required rows="6" cols="25" placeholder="Animal's description"
+						ng-model="animal.description"></textarea></td>
+			<td ng-if="animal.beingEdited">
+					<input required placeholder="Price" ng-model="animal.price" size="7">
+					</input></td>
+			<td ng-if="animal.beingEdited">	
+					<input placeholder="Stock" ng-model="animal.stock" size="7">
+					</input></td>
+			<td ng-if="animal.beingEdited">
+					<button ng-click="reset(animal)">Undo</button>
+					<button ng-click="updateAnimal(animal)">Confirm changes</button></td>
+			</form>
+			
+			<td><a ui-sref="images({ animalID : animal._id })"><button>Add/Edit Images</button></a></td>
+			<td><a ui-sref="animal_categories({ animalID : animal._id })"><button>Add/Remove Categories</button></a></td>
+
+		</tr>
+		</table>
+	</div>
+	</div>
+	
+</div>
+</section>

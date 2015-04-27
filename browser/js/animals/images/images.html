@@ -1,0 +1,32 @@
+<section>
+
+<div id="front" class="container">
+
+	<div class="col-lg-12">
+		<div class="row">
+
+			<h2>Animal Primary Image: </h2>
+			 <input type="text" size="100" ng-model="pet.imgUrl"></input>
+			 <button ng-click="updateImage()" class="btn btn-success">Update primary image</button>
+			 <img width="40%" src="{{pet.imgUrl}}"></img>
+		</div>
+		
+		<div ng-if="pet.secondaryImgUrls.length>0" class="row">
+			<h3>Secondary Image Urls: </h3>
+			<ul>
+			<div ng-repeat="sIU in pet.secondaryImgUrls" class="row">
+				<li>{{sIU}}
+	    		<a ng-click="deleteImage($index)">Delete</a>
+	    		</li>
+			</div>
+		</ul>
+		</div>
+
+		<div class="row">
+			<input size="50" ng-model="pet.newImage"></input>
+			<button ng-click="addImage()" class="btn btn-default">Add secondary image</button>
+		</div>
+	</div>
+
+</div>
+</section>

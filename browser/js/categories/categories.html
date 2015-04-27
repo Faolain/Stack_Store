@@ -1,0 +1,53 @@
+<section id="categories"> 
+<div class="container">
+	<div class="col-lg-12">
+		<div class="row">
+			<button ng-hide="data.createCategory" ng-click="data.createCategory = true">
+				Create a new category</button>
+			<h2 ng-show="data.createCategory">New Category</h2>
+			<form ng-show="data.createCategory" ng-submit="createNewCategory(data)">
+				<input required placeholder="Category's name" ng-model="data.newName" size="40"></input>
+				</br>
+				<textarea required rows="5" cols="40" placeholder="Divisions made for each category.&#13;&#10;Please separate each of them with commas or one per line." ng-model="data.newValues"></textarea>
+				</br>
+				<button type="submit" class="btn btn-default">Create Category</button>
+			</form>
+		</div>
+	
+	<hr>
+
+	<div class="row">
+	
+		<h2>Category Name</h2>
+			
+		<div ng-repeat="category in categories" ng-controller="CategoriesController">
+			
+			<!-- Showing display -->
+			<h3>{{category.name}}</h3>
+			<ul>
+				<li ng-repeat="subCategory in category.values">
+					{{subCategory}}
+	    		</li>
+			</ul>
+			<a><button ng-click="editCategory(category)">Edit Category</button></a>
+			<a><button ng-click="deleteCategory($index)">Delete Category</button></a>
+			</br></br>
+			
+			<!-- Editing display --> 
+			
+			<input ng-if="category.beingEdited" required ng-model="category.name" size="25">
+			</input></br>
+		
+			<textarea ng-if="category.beingEdited" required rows="4" cols="25"
+				ng-model="category.newEditValues"></textarea></br>
+	
+			<button ng-if="category.beingEdited" ng-click="resetCategory(category)">Undo</button>
+			<button ng-if="category.beingEdited" ng-click="updateCategory(category)">Confirm changes
+			</button>
+		</div>
+	</div>
+
+	</div>
+	
+</div>
+</section>

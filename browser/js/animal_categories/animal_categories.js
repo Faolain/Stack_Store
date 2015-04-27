@@ -26,7 +26,7 @@ app.controller('AnimalCategoriesController', function ($scope, $stateParams, Ani
 			for (var i = 0; i < $scope.categories.length; i++) {
 
 				$scope.categories[i].matches = [];
-				for (var k = 0; k < $scope.categories[i].values.length; k++) {
+				for (var z = 0; z < $scope.categories[i].values.length; z++) {
 					$scope.categories[i].matches.push(false);
 				}
 
@@ -42,7 +42,7 @@ app.controller('AnimalCategoriesController', function ($scope, $stateParams, Ani
 						}
 					}
 				}
-			};
+			}
 		});
 	});
 
@@ -66,8 +66,8 @@ app.controller('AnimalCategoriesController', function ($scope, $stateParams, Ani
 					
 					//console.log("INSIDE FOR LOOP", animal_category.values);
 					//console.log("INSIDE FOR LOOP", animal_category);
-				};
-			};
+				}
+			}
 
 			animal_category.categoryArr.push( obj );
 		}

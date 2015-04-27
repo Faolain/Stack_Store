@@ -17,7 +17,7 @@ var ensureAdmin = function (req, res, next) {
 };
 
 //get available animals and also filters by name for the search
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
   var obj = {};
 
   if (req.query.search) obj.name = req.query.search;
@@ -28,7 +28,7 @@ router.get('/', function (req, res) {
 });
 
 //get one animal by id
-router.get('/:id', function (req, res) {
+router.get('/:id', function (req, res, next) {
   
   var id = req.params.id;
   Animals.findById(id, function (err, animal){
@@ -78,7 +78,7 @@ router.post('/:id/addReview', function (req, res, next) {
 
 
 //get categories of one particular animal
-router.get('/:id/categories', function (req, res) {
+router.get('/:id/categories', function (req, res, next) {
   
   var id = req.params.id;
   Animal_Category.find({animalID : id}, function (err, animal_categories){
@@ -88,7 +88,7 @@ router.get('/:id/categories', function (req, res) {
 });
 
 //create categories mapping of one particular animal
-router.post('/:id/categories', function (req, res) {
+router.post('/:id/categories', function (req, res, next) {
   
   var id = req.params.id;
   var catArr = req.body.categoryArr;
@@ -108,7 +108,7 @@ router.post('/:id/categories', function (req, res) {
 });
 
 //update categories mapping of one particular animal
-router.put('/:id/categories', function (req, res) {
+router.put('/:id/categories', function (req, res, next) {
   
   var id = req.params.id;
   var catArr = req.body.categoryArr;
@@ -127,10 +127,8 @@ router.put('/:id/categories', function (req, res) {
       .then(function(animal_cat){
          animal_cat.values = element.values;
          animal_cat.save();
-      })
+      });
   }).then( function(results) {
-    console.log("HOLA!");
-    console.log(results);
     res.send(results);
   } );
       

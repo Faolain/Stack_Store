@@ -17,9 +17,17 @@ app.run(function ($rootScope, AuthService, $state) {
         return state.data && state.data.authenticate;
     };
 
+     var destinationStateRequiresAdmin = function (state) {
+        return state.data && state.data.admin;
+    };
+
     // $stateChangeStart is an event fired
     // whenever the process of changing a state begins.
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+
+        if (destinationStateRequiresAdmin(toState) && !AuthService.isAdmin()) {
+             event.preventDefault();
+        }
 
         if (!destinationStateRequiresAuth(toState)) {
             // The destination state does not require authentication

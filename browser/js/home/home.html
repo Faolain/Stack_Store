@@ -2,11 +2,13 @@
     <fullstack-logo></fullstack-logo>
     <rando-greeting></rando-greeting>
 </section-->
-<section>
+<section id="home"> 
+<p><a ui-sref="users">View users</a></p>
+<p><a ui-sref="animals">Create/Edit animals</a></p>
+<p><a ui-sref="categories">Create/Edit categories</a></p>
 
 
 <div id="front" class="container">
-
 	<div class="col-lg-9">
 		<div class="row">
 		<form action="/search" method="GET">
@@ -28,13 +30,18 @@
 
 
 		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
-			<a ui-sref="details({animalID:pet._id})"><img src={{pet.imgUrl}}></a>
-			<a ui-sref="details({animalID:pet._id})"><label>{{pet.name}}</label></a>
-			<a href="" ng-click="addToCart(pet);">Add to Cart</a>
+			<div>
+				<a ui-sref="details({animalID:pet._id})"><img src={{pet.imgUrl}}></a>
+			</div>
+			<div>
+				<a ui-sref="details({animalID:pet._id})"><label>{{pet.name}}</label></a>
+				<a href="" ng-click="addToCart(pet);">Add to Cart</a>
+			</div>
 		</div>
 	</div>
+	</div>
 
-	<div ng-controller="ShoppingCartController"class="col-lg-3">
+	<div ng-controller="ShoppingCartController" class="col-lg-3 shopCart">
 		<div class="row">
 			<p>Shopping cart:</p>
 		</div>
@@ -44,12 +51,11 @@
 			<p><a ng-click="removeItem(item)">Remove Item</a></p>
 		</div>
 
-		<div class="row">
+		<div class="row shopCartbuttons">
 			<button> Checkout </button>
 			<button ng-click="clearCart()">Clear Cart</button>
 			<button ng-click="sendCartToDB()">Save Cart</button>
 		</div>
-	</div>
-
+	
 </div>
 </section>

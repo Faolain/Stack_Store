@@ -12,12 +12,15 @@ var ensureAdmin = function (req, res, next) {
 };
 
 //Update a Particular User Password
-router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
+router.put('/:id/changeUserPassword', ensureAdmin, function (req, res, next) {
 
     Users.findById(req.params.id, function (err, user){
       user.password = req.body.password;
       user.save(function(err, savedUser){
-         if (err) return next(err);
+         if (err)  { 
+            console.log(err);
+            return next(err);
+          }
          res.send(savedUser);
       });
     });
@@ -26,6 +29,10 @@ router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
 //get all users
 router.get('/',  function (req, res, next) {
   Users.find({}, function(err, users) {
+    if (err)  { 
+        console.log(err);
+        return next(err);
+      }
     res.send(users);
   });
 });
@@ -34,9 +41,17 @@ router.get('/',  function (req, res, next) {
 router.put('/:id/promoteUser', ensureAdmin, function (req, res, next) {
 
     Users.findById(req.params.id, function (err, user){
+      if (err)  { 
+        console.log(err);
+        return next(err);
+      }
+      
       user.admin = true;
       user.save(function(err, savedUser){
-         if (err) return next(err);
+         if (err)  { 
+        console.log(err);
+        return next(err);
+      }
          res.send(savedUser);
       });
     });

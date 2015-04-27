@@ -9,9 +9,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
-                { label: 'Tutorial', state: 'tutorial' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                //{ label: 'View Past Orders', state: 'XXXTBDXXX', auth: true },
+                { label: 'Admin', state: 'admin', admin: true }
             ];
 
             scope.user = null;
@@ -19,6 +18,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();
             };
+
+            scope.isAdmin = function () {
+                return AuthService.isAdmin();
+            };//added by Miguel to check if the user is an Admin user
 
             scope.logout = function () {
                 AuthService.logout().then(function () {

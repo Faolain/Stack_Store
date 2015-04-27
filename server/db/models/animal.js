@@ -12,7 +12,8 @@ var schema = new mongoose.Schema({
     weight: Number,
     price: {type: Number, required: true},
     imgUrl: {type: String, default: "http://www.placecage.com/c/200/300"},
-    stock: Number,
+    secondaryImgUrls: [{type: String}],
+    stock: {type: Number, default: 0},
     tags: [String],
     discontinued: Boolean
 });

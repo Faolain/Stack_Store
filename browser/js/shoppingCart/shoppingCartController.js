@@ -36,5 +36,8 @@ app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootS
 
 	};
 	$scope.getAllItems();
+	if($scope.items.length===0){
+		ShoppingCart.retrieveFromDB();
+	}
 
 });

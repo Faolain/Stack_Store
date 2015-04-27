@@ -7,6 +7,12 @@ app.factory("UserSettingsFactory",function($http){
 				return data.data;
 			});
 
+		},
+		changeUserPassword: function(){
+			return $http.put('/api/users/changeYourPassword');
+		},
+		changeUserEmail: function(){
+			return $http.put('/api/users/changeYourEmail');
 		}
 
 	};

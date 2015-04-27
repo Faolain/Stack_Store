@@ -21,27 +21,39 @@ var ensureAuthenticated = function (req, res, next) {
 
 //create Order
 router.post('/', ensureAuthenticated, function(req,res,next){
+
     Order.create(req.body, function (err, order) {
-    if (err) return next(err);
-    // saved!
-    res.send(order);
+      if (err) return next(err);
+      // saved!
+      // User.addOrderToUser(req.user.id, order.id, function(err,userWithOrder){
+      //   if(err) return next(err);
+      //   console.log('successfully added order to user');
+      //   if(!userWithOrder){return next(err);}
+      //   else
+      //   res.send(userWithOrder);    
+      // });
+      console.log("sucessfully saved order",order);
+      res.send(order);    
   });
 });
 
 
 //Get all the orders for Admin
-router.get('/', function (req, res) {
+router.get('/', ensureAdmin, function (req, res) {
   //if it is an admin get all items
+  var status = req.body.status || 'Pending';
   if(req.user.admin){
-      Order.find({status: req.body.status}, function(err, orders) {
+      Order.find({status: status}, function(err, orders) {
         res.send(orders);
       });
 
   }
-  User.findById(req.session.passport.user, function(err, user){
-    res.send(user.orders);
+  else{
+    User.findById(req.session.passport.user, function(err, user){
+      res.send(user.orders);
 
-  });
+    });
+  }
 
 });
 

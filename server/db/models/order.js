@@ -5,7 +5,12 @@ var mongoose = require('mongoose'),
 var schema = new mongoose.Schema({
     status: String,
     date: Date,
-    itemList: [{ type: Schema.ObjectId, ref: 'orderItem' }],
+    itemList: [{
+	    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Animal', required: true},
+	    quantity: Number,
+	    price: Number
+
+	}],
     billingAddress: 
 	    {firstName: String, 
 	    lastName:String, 

@@ -1,4 +1,5 @@
 app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootScope, ShoppingCart, $http) {
+	
 	$scope.items = [];
 	$scope.itemQuantity;
 	$scope.getAllItems = function(){

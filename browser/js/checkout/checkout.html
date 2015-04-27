@@ -1,0 +1,10 @@
+<div ng-controller="ShoppingCartController" class="col-lg-3">
+		<div class="row">
+			<p>You're purchasing this....</p>
+		</div>
+		<div ng-repeat="item in items" class="row">
+			<img class="checkout-img" src={{item.imgUrl}}></img>
+			<p>Item Description: {{item.name}}</p>
+			<p>Item Quantity:  {{item.quantity}}</p> Item Total: {{item.quantity*item.price}}
+		</div>
+	</div>

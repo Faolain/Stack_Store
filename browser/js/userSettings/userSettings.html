@@ -1,0 +1,21 @@
+<div ng-controller="UserSettingsController">
+		<h1>USER SETTINGS </h1>
+		<p>Email : {{userInformation.email}} <button>Change Email</button></p>
+		<p>orders: {{userInformation.orders}}</p>
+		<!-- need to consider passing argument to checkout so that it knows whether to
+		load from local storage or database -->
+		<br><b>Saved Cart 	<button ui-sref="checkout">Checkout</button></b>
+		<div ng-repeat="itemObj in cartItems">
+		<img  class="checkout-img" src={{itemObj.item.imgUrl}}></img>
+		<!-- need to make this a directive, using the isolate scope tric so that both
+		checkoutpage and usersettings page can use this -->
+		<p>item Name: {{itemObj.item.name}}</p>
+		<p>item price: {{itemObj.price}}</p>
+		<p>item quantity: {{itemObj.quantity}}</p><br>
+		</div>
+
+		<button ng-click="changePassword">Change Password</button>
+
+		
+</div>
+

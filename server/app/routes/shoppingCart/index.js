@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var ShoppingCart = require('../../../db/models/shoppingCart.js');
-
+var User = require('../../../db/models/user.js');
 
 
 
@@ -41,14 +41,21 @@ router.get('/:id', ensureAdmin, function (req, res) {
 
 //update cart
 router.put('/:cartId', function(req,res, next){
+	//at this point we need to make sure that the shopping cart ID is added
+	//to the user model
 
 	var cartId = req.params.cartId;
 	var petId = req.params.petId;
 	var cartItems = req.body;
+	var userId = req.user.id;
+	User.addCartIdToUser(cartId, userId, function(err,data){
+		if(err) console.err('error with adding cart ID',err);
+
+	});
 
 	ShoppingCart.updateShoppingCart(cartItems,cartId,function(err,data){
-		//console.log('err',err,'data',data);
-		//error handling
+		if(err) console.err('error with update shopping cart',err);
+
 	});
 
 

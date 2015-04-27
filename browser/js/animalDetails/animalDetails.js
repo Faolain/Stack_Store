@@ -2,7 +2,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('details', {
         url: '/animal/:animalID',
-        controller: "PetStoreFrontController",
+        controller: "AnimalDetailsController",
         templateUrl: 'js/animalDetails/animalDetails.html'
     });
 });

@@ -12,6 +12,16 @@ var ensureAdmin = function (req, res, next) {
    }
 };
 
+//get available animals and also filters by name for the search
+router.get('/', function (req, res) {
+  var obj = {};
+  //if (!req.user.admin) obj.discontinued = false;
+
+  if (req.query.search) obj.name = req.query.search;
+  Animals.find(obj, function(err, animals) {
+    res.send(animals);
+  });
+});
 
 
 // //get one animal by id
@@ -25,13 +35,15 @@ var ensureAdmin = function (req, res, next) {
 //   });
 // });
 
-//get available animals and also filters by name for the search
-router.get('/', function (req, res) {
-  var obj = {};
-  //if (!req.user.admin) obj.discontinued = false;
-  if (req.query.search) obj.name = req.query.search;
-  Animals.find({}, function(err, animals) {
-    res.send(animals);
+//get one animal by id
+router.get('/:id', function (req, res) {
+  
+  var id = req.params.id;
+  Animals.findById(id, function (err, animal){
+    animal.deepPopulate('reviews.user', function(err, animalPopulated){
+      //console.log(animalPopulated);
+        res.send(animalPopulated);
+    });
   });
 });
 
@@ -77,11 +89,6 @@ router.post('/:id/addReview', function (req, res, next) {
   });
 });
 
-router.delete('/:id',function(req,res,next){
-  Animals.findByIdAndRemove(req.params.id, function(err,data){
-        res.send(data);
-        return next(err);
-    });
-});
+
 
 

@@ -65,6 +65,17 @@ schema.static('addCartIdToUser', function(cartId,userId, callback){
 
     });
 });
+schema.static('addOrderToUser', function(userId, orderId, callback){
+    this.findById(userId, function(err,user){
+        if(err) console.error('find user error',err);
+        else if(user){
+            console.log('pushing order to user orders');
+            user.orders.push(orderId);
+            user.save(callback);
+        }
+
+    });
+});
 
 schema.method('populateCart', function(callback){
     this.deepPopulate('cart.items.item',function(err,user){

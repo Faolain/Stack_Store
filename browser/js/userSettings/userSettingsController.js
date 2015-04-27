@@ -11,7 +11,9 @@ app.controller('UserSettingsController',function($scope,  UserSettingsFactory, S
 		//i am thinking perhaps Deep Populate would be more elegant?
 		$scope.userInformation = userInfo;
 		$scope.cartItems = userInfo.cart.items;
+		$scope.userId = userInfo.id;
 	});
+
 
 
 

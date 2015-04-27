@@ -41,9 +41,9 @@ router.post('/', ensureAuthenticated, function(req,res,next){
 //Get all the orders for Admin
 router.get('/', ensureAdmin, function (req, res) {
   //if it is an admin get all items
-  var status = req.body.status || 'Pending';
+  var status =  req.body.status ?  {status:req.body.status} : {};
   if(req.user.admin){
-      Order.find({status: status}, function(err, orders) {
+      Order.find(status, function(err, orders) {
         res.send(orders);
       });
 
@@ -71,10 +71,20 @@ router.get('/:id', function (req, res) {
 
 //Updating Status on Order
 router.put('/:id', ensureAdmin, function (req, res, next) {
+  var newStatus = req.body.status;
+  Order.findById(req.params.id, function(err, order){
+    order.status = newStatus;
+    order.save(function(err,data){
+       if (err) console.error(err);
+       else if(order){
+        console.log('sending back order',order);
+        res.send(order);
 
-  Order.findByIdAndUpdate(req.params.id, req.body, function(err, order){
-     if (err) return next(err);
-     res.send(order);
+       }
+
+    });
+   
+     
    });
 });
 

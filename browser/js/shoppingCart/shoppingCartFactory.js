@@ -41,6 +41,8 @@ app.factory('ShoppingCart', function($http, localStorageService) {
 
       },
       retrieveFromDB: function(){
+        //will also need to have some mechanism to attach this to local storage.
+        return $http.get('/api/cart/getYourCart');
         
       }
 

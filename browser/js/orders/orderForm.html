@@ -1,44 +1,44 @@
-	<div ng-controller="OrderController">
+	<div>
   <form ng-submit="submitOrder()">
-			<div class="gleft"><br>
+			<div ><br>
         <h3>Billing address</h3>
-        
+        {{items}}
 
   <table cellspacing="0" cellpadding="0" class="form" id="billing">
     <tbody><tr>
-      <td class="lbl"><label for="billing_address_first_name">First Name</label></td>
-      <td><input class="short" name="billing_address[first_name]" size="30" tabindex="2" type="text" x-autocompletetype="section-billing given-name"></td>
+      <td ><label>First Name</label></td>
+      <td><input ng-model="billingAddress.firstName" size="30" tabindex="2" type="text" ></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_last_name">Last Name</label></td>
-      <td><input class="short" name="billing_address[last_name]" size="30" tabindex="3" type="text" x-autocompletetype="section-billing surname"></td>
+      <td ><label >Last Name</label></td>
+      <td><input ng-model="billingAddress.lastName" size="30" tabindex="3" type="text" ></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_company">Company</label></td>
-      <td><input class="short"  name="billing_address[company]" size="30" tabindex="4" type="text" x-autocompletetype="section-billing organization"></td>
+      <td ><label >Company</label></td>
+      <td><input ng-model="billingAddress.Company"size="30" tabindex="4" type="text"></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_address1">Address</label></td>
-      <td style="width: 260px"><input name="billing_address[address1]" size="30" tabindex="5" type="text" x-autocompletetype="section-billing address-line1"></td>
+      <td ><label >Address</label></td>
+      <td style="width: 260px"><input ng-model="billingAddress.Address" size="30" tabindex="5" type="text" ></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_address2">Address2</label></td>
-      <td style="width: 260px"><input  name="billing_address[address2]" size="30" tabindex="6" type="text" x-autocompletetype="section-billing address-line2"></td>
+      <td ><label >Address2</label></td>
+      <td style="width: 260px"><input ng-model="billingAddress.Address2"  size="30" tabindex="6" type="text" ></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_city">City</label></td>
-      <td><input class="medium" name="billing_address[city]" size="30" tabindex="7" type="text" x-autocompletetype="section-billing city"></td>
+      <td ><label >City</label></td>
+      <td><input ng-model="billingAddress.City" size="30" tabindex="7" type="text" ></td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_zip">Postal/ZIP Code</label></td>
-      <td><input class="short" name="billing_address[zip]" size="30" tabindex="8" type="text" x-autocompletetype="section-billing postal-code"></td>
+      <td ><label >Postal/ZIP Code</label></td>
+      <td><input ng-model="billingAddress.ZIP" size="30" tabindex="8" type="text" ></td>
     </tr>
     <tr>
       <td colspan="2" style="width: 360px">
-        <ul class="inline">
+        <ul >
           <li style="width: 160px">
-            <label for="billing_address_country">Country</label>
-            <select name="billing_address[country]" style="width:150px" tabindex="9"><option value="Australia">Australia</option>
+            <label>Country</label>
+            <select ng-model="billingAddress.Country" style="width:150px" tabindex="9"><option value="Australia">Australia</option>
 <option selected="selected" value="United States">United States</option>
 <option value="United Kingdom">United Kingdom</option>
 <option value="---">---</option>
@@ -283,20 +283,20 @@
 <option value="Zimbabwe">Zimbabwe</option></select>
           </li>
           <li style="width: 160px;margin-right: 5px">
-            <label for="billing_address_province" >State</label>
-            <select name="billing_address[province]" tabindex="10" style="width: 150px;"><option value="">-- Please Select --</option><option>Alabama</option><option>Alaska</option><option>American Samoa</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Federated States of Micronesia</option><option>Florida</option><option>Georgia</option><option>Guam</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Marshall Islands</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Northern Mariana Islands</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Palau</option><option>Pennsylvania</option><option>Puerto Rico</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>Washington DC</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option><option>Virgin Islands</option><option>Armed Forces Americas</option><option>Armed Forces Europe</option><option>Armed Forces Pacific</option></select>
+            <label ng-model="billingAddress.State" >State</label>
+            <select tabindex="10" style="width: 150px;"><option value="">-- Please Select --</option><option>Alabama</option><option>Alaska</option><option>American Samoa</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Federated States of Micronesia</option><option>Florida</option><option>Georgia</option><option>Guam</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Marshall Islands</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Northern Mariana Islands</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Palau</option><option>Pennsylvania</option><option>Puerto Rico</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>Washington DC</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option><option>Virgin Islands</option><option>Armed Forces Americas</option><option>Armed Forces Europe</option><option>Armed Forces Pacific</option></select>
           </li>
         </ul>
       </td>
     </tr>
     <tr>
-      <td class="lbl"><label for="billing_address_phone">Phone</label></td>
-      <td><input class="short" name="billing_address[phone]" size="30" tabindex="11" type="text" x-autocompletetype="section-billing phone-full"></td>
+      <td ><label >Phone</label></td>
+      <td><input  ng-model="billingAddress.Phone" size="30" tabindex="11" type="text" ></td>
     </tr>
         <tr >
           <td colspan="2">
-            <input type="checkbox" name="billing_is_shipping" checked="checked" style="width: auto" tabindex="12">
-            <label for="shipping-toggle">Ship items to the above billing address</label>
+            <input type="checkbox" checked="checked" style="width: auto" tabindex="12">
+            <label >Ship items to the above billing address</label>
           </td>
         </tr>
   </tbody></table>

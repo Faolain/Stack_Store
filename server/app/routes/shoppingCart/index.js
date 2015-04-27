@@ -39,6 +39,14 @@ router.get('/:id', ensureAdmin, function (req, res) {
   });
 });
 
+//Get Saved shopping cart for particular user
+router.get('/getYourCart', ensureAdmin, function (req, res) {
+  var id = req.params.id;
+  ShoppingCart.findById(id, function (err, cart){
+    res.send(cart);
+  });
+});
+
 //update cart
 router.put('/:cartId', function(req,res, next){
 	//at this point we need to make sure that the shopping cart ID is added

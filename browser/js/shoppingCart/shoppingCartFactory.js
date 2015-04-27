@@ -40,10 +40,10 @@ app.factory('ShoppingCart', function($http, localStorageService) {
 
 
       },
-      getCartId: function(){
-        //based on current logged in user, this function will return user ID
-
+      retrieveFromDB: function(){
+        
       }
+
 
 
   };

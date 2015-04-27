@@ -32,11 +32,23 @@ router.put('/:id/changeUserPassword/', ensureAuthenticated, function (req, res, 
       });
     });
 });
+router.put('/changeYourPassword/', ensureAuthenticated, function (req, res, next) {
+    //console.log(req.body);
+    Users.findById(req.user.id, function (err, user){
+     user.password = req.body.password;
+     //req.body is empty - had anyone tested this?
+     //console.log('req',req.body);
+      user.save(function(err, savedUser){
+         if (err) return next(err);
+         res.send(savedUser);
+      });
+    });
+});
 
-//Update a Particular User email address
-router.put('/:id/changeUserEmail/', ensureAuthenticated, function (req, res, next) {
+//Update own users email address
+router.put('/changeYourEmail/', ensureAuthenticated, function (req, res, next) {
 
-    Users.findById(req.params.id, function (err, user){
+    Users.findById(req.user.id, function (err, user){
       user.email = req.body.email;
       //req.body is empty
       //console.log('req',req.body);

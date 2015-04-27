@@ -11,11 +11,35 @@ var ensureAdmin = function (req, res, next) {
    }
 };
 
+
+var ensureAuthenticated = function (req, res, next) {
+   if (req.isAuthenticated()) {
+       next();
+   } else {
+       res.status(401).end();
+   }
+};
 //Update a Particular User Password
-router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
+router.put('/:id/changeUserPassword/', ensureAuthenticated, function (req, res, next) {
+    //console.log(req.body);
+    Users.findById(req.params.id, function (err, user){
+     user.password = req.body.password;
+     //req.body is empty - had anyone tested this?
+     //console.log('req',req.body);
+      user.save(function(err, savedUser){
+         if (err) return next(err);
+         res.send(savedUser);
+      });
+    });
+});
+
+//Update a Particular User email address
+router.put('/:id/changeUserEmail/', ensureAuthenticated, function (req, res, next) {
 
     Users.findById(req.params.id, function (err, user){
-      user.password = req.body.password;
+      user.email = req.body.email;
+      //req.body is empty
+      //console.log('req',req.body);
       user.save(function(err, savedUser){
          if (err) return next(err);
          res.send(savedUser);
@@ -24,9 +48,24 @@ router.put(':id/changeUserPassword/', ensureAdmin, function (req, res, next) {
 });
 
 //get all users
-router.get('/',  function (req, res, next) {
+router.get('/', ensureAdmin, function (req, res, next) {
   Users.find({}, function(err, users) {
     res.send(users);
+  });
+});
+
+//get specific user information
+router.get('/userInformation', ensureAuthenticated, function (req, res, next) {
+
+  Users.findById(req.user.id, function(err, user) {
+    // if there is a user cart then populate it
+    if(user.cart){
+      user.populateCart(function(err, cart){
+        res.send(user);
+      });
+    }
+    else
+      res.send(user);
   });
 });
 

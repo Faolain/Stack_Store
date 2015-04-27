@@ -23,6 +23,18 @@ router.get('/', function (req, res) {
   });
 });
 
+
+// //get one animal by id
+// router.get('/:id', function (req, res) {
+//   var id = req.params.id;
+//   Animals.findById(id, function (err, animal){
+//     animal.populate('reviews', 'user', function(err, animalPopulated){
+//       //console.log(animalPopulated);
+//         res.send(animalPopulated);
+//     });
+//   });
+// });
+
 //get one animal by id
 router.get('/:id', function (req, res) {
   
@@ -31,9 +43,10 @@ router.get('/:id', function (req, res) {
     animal.deepPopulate('reviews.user', function(err, animalPopulated){
       //console.log(animalPopulated);
         res.send(animalPopulated);
-    })
+    });
   });
 });
+
 
 
 

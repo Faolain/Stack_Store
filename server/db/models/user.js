@@ -1,6 +1,7 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
     email: {
@@ -54,10 +55,32 @@ schema.pre('save', function (next) {
 
 });
 
+schema.static('addCartIdToUser', function(cartId,userId, callback){
+    this.findById(userId, function(err,user){
+        if(err) console.error('find user error',err);
+        else if(user){
+            user.cart = cartId;
+            user.save(callback);
+        }
+
+    });
+});
+
+schema.method('populateCart', function(callback){
+    this.deepPopulate('cart.items.item',function(err,user){
+        if(err) console.log('populate cart error',err);
+        else if(user){
+            callback(user);
+           
+        }
+    });
+});
+
 var validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email)
 };
+schema.plugin(deepPopulate);
 
 schema.path('email').validate(validateEmail, "The email must be valid");
 

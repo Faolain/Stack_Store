@@ -36,8 +36,8 @@ router.get('/:id', function (req, res) {
 
       animal.deepPopulate('reviews.user', function(err, animalPopulated){
         res.send(animalPopulated);
-      });
     });
+  });
 });
 
 router.post('/', ensureAdmin, function (req, res, next) {

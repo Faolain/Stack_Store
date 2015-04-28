@@ -1,0 +1,35 @@
+
+
+<div class="col-lg-9">
+		<div class="row">
+			<p>Order ID: </p>
+			<p>{{order._id }}</p>
+		</div>
+		<div class="row">
+			<p>Order Status: </p>
+			<p>{{order.status }}</p>
+		</div>
+		<br><br>
+		<div class="row">
+			<b>Billing Details</b>
+		</div>
+		<div class="row">
+			<p>Name on Order: </p>
+			<p>{{order.billingAddress.firstName+" "+order.billingAddress.lastName }}</p>
+		</div>
+		<div class="row">
+			<p>Address: </p>
+			<p>{{order.billingAddress.Address}}</p>
+		</div>
+		<div class="row">
+			<p>City: </p>
+			<p>{{order.billingAddress.City}}</p>
+		</div>
+		<div class="row">
+			<p>ZIP: </p>
+			<p>{{order.billingAddress.ZIP}}</p>
+		</div>
+		<div class="row">
+			<p>Country: </p>
+			<p>{{order.billingAddress.Country}}</p>
+		</div>

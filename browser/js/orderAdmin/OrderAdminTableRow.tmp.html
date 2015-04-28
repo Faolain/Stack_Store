@@ -1,0 +1,16 @@
+
+
+
+	<td><p>{{order.billingAddress.firstName+" "+order.billingAddress.lastName}}</p><br></td>
+	<td><p >{{order.status}}</p><br></td>
+	<td><p >{{newStatus}}</p></td>
+	<td><select type="text" ng-model="newStatus">
+	<option>Created</option> 
+	<option>Processing</option> 
+	<option>Cancelled</option> 
+	<option>Completed</option></select></td>
+
+	<td><p>{{order._id}}</p><br></td>
+	<td><a><button ng-click="editStatus(order,newStatus)">Edit Status</button></form><button ui-sref="order_details({orderID: order._id})">View Order</button></a>
+	</td>
+			

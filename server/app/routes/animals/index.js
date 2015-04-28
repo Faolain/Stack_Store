@@ -18,6 +18,9 @@ var ensureAdmin = function (req, res, next) {
 router.get('/', function (req, res, next) {
   
   var obj = {};
+  if (req.user && !req.user.admin) {
+       obj.stock = {$gt: 0};
+   }
 
   if (req.query.search) obj.name = req.query.search;
   Animals.find(obj, function(err, animals) {

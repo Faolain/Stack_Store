@@ -27,7 +27,10 @@
 			
 		</div>
 		<div class="row">
-			<p><label>Animal Stock: </label> {{pet.stock}}</p>
+			<p><label>Animal Stock: </label>
+				<span ng-if="pet.stock && pet.stock>0">{{pet.stock}}</span>
+				<span ng-if="!pet.stock || pet.stock===0">Sorry. Currently Unavailable. If we don't get it soon it means it is extinct...</span>
+			</p>
 		</div>
 		<hr>
 		<div class="row">
@@ -36,11 +39,13 @@
 				<li>{{review.content}}, {{review.date | date: 'medium'}}, {{review.user.email}}</li>
 			</ul>
 
-			<form ng-if="isLoggedIn()" id="review-form" name="reviewForm" ng-submit="sendReview(newReview)">
+			<form ng-if="isLoggedIn()" id="review-form" name="reviewForm" 
+			ng-submit="reviewForm.content.$dirty &&reviewForm.$valid && sendReview(newReview)">
 
 		    <div class="form-group">
 		        <label for="content">Want to make a new Review? Go for it! Below please:</label></br>
-		        <textarea cols="40" rows="5" ng-model="newReview.content" id="content"></textarea>
+		         <span ng-show="reviewForm.$error.minlength">Reviews must have 10 characters at least.</br></span>
+		        <textarea cols="40" rows="5" ng-minlength="10" name="content" ng-model="newReview.content" id="content"></textarea>
 		    </div>
 
     		<button type="submit" class="btn btn-success">Submit Review</button>

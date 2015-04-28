@@ -3,8 +3,6 @@ var deepPopulate = require('mongoose-deep-populate');
 var Animals = require('../../../db/models/animal.js');
 var Animal_Category = require('../../../db/models/animal_category.js');
 var Reviews = require('../../../db/models/review.js');
-var Promise = require('bluebird');
-var Animal_Category = Promise.promisifyAll(Animal_Category);
 
 module.exports = router;
 
@@ -74,64 +72,5 @@ router.post('/:id/addReview', function (req, res, next) {
     else {console.log('succes',review);
     res.send(review);}
   });
-});
-
-
-//get categories of one particular animal
-router.get('/:id/categories', function (req, res, next) {
-  
-  var id = req.params.id;
-  Animal_Category.find({animalID : id}, function (err, animal_categories){
-      if (err) return next(err);
-      res.send(animal_categories);
-    });
-});
-
-//create categories mapping of one particular animal
-router.post('/:id/categories', function (req, res, next) {
-  
-  var id = req.params.id;
-  var catArr = req.body.categoryArr;
-  var array_of_a_c = [];
-
-  for (var i = 0; i<catArr.length; i++) {
-    var a_c = { animalID: id };
-    a_c.categoryID = catArr[i].categoryID;
-    a_c.values = catArr[i].values;
-    array_of_a_c.push(a_c);
-  }
-
-  Animal_Category.create( array_of_a_c, function (err, animal_categories){
-      if (err) return next(err);
-      res.send(animal_categories);
-    });
-});
-
-//update categories mapping of one particular animal
-router.put('/:id/categories', function (req, res, next) {
-  
-  var id = req.params.id;
-  var catArr = req.body.categoryArr;
-  var array_of_a_c = [];
-
-  for (var i = 0; i<catArr.length; i++) {
-    var a_c = { animalID: id };
-    a_c.categoryID = catArr[i].categoryID;
-    a_c.values = catArr[i].values;
-    array_of_a_c.push(a_c);
-  }
-
-  Promise.each(array_of_a_c, function( element ){
-  return Animal_Category.findOneAsync(
-    {'animalID': element.animalID, 'categoryID': element.categoryID })
-      .then(function(animal_cat){
-         animal_cat.values = element.values;
-         animal_cat.save();
-      });
-  }).then( function(results) {
-    res.send(results);
-  } );
-      
-  
 });
 

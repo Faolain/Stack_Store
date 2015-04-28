@@ -2,11 +2,7 @@
     <fullstack-logo></fullstack-logo>
     <rando-greeting></rando-greeting>
 </section-->
-<section id="home"> 
-<p><a ui-sref="users">View users</a></p>
-<p><a ui-sref="animals">Create/Edit animals</a></p>
-<p><a ui-sref="categories">Create/Edit categories</a></p>
-
+<section id="home">
 
 <div id="front" class="container">
 	<div class="col-lg-9">
@@ -17,21 +13,28 @@
 		</form>
 		</div>
 		
-		<div class="row">
-		<hr><p>Filter by Category:</p>
-		<input type="radio" class="category" ng-model="category.name" value="" checked>All</input>
-		<input type="radio" class="category" ng-model="category.name" value="Mammal" >Mammal</input>
-		<input type="radio" class="category" ng-model="category.name" value="Bird" >Bird</input>
-		<input type="radio" class="category" ng-model="category.name" value="Reptile" >Reptile</input>
+		<h3>Filter by:</h3>
+		<div ng-repeat="category in categories" ng-controller="HomePageController">
+			<h4>{{category.name}}</h4>
+			<table><tr>
+				<td ng-repeat="subCategory in category.values">
+					{{subCategory}}
+	    		</td>
+			</tr>
+			<tr>
+				<td ng-repeat="e in category.matches track by $index" >
+					<input type="checkbox" ng-model="category.matches[$index]"></input>
+	    		</td>
+	    	</tr>
+			</table>
 		</div>
-
+		<button ng-click="filter()">Filter</button>
 		<hr>
 		<div class="row">
 
-
-		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
+		<div ng-repeat="pet in pets | categoryFilter:filters" ng-model="filters" ng-controller="itemController" class="item">
 			<div>
-				<a ui-sref="details({animalID:pet._id})"><img src={{pet.imgUrl}}></a>
+				<a ui-sref="details({animalID:pet._id})"><img class="img-thb" src={{pet.imgUrl}}></a>
 			</div>
 			<div>
 				<a ui-sref="details({animalID:pet._id})"><label>{{pet.name}}</label></a>

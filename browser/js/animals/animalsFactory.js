@@ -6,7 +6,7 @@ app.factory('AnimalsFactory', function ($http) {
             var queryParams = {};
 
             if (searchText) {
-                queryParams.searchText = searchText;
+                queryParams.search = searchText;
             }
 
             return $http.get('/api/animals', {

@@ -5,9 +5,10 @@
 	width:100px;
 	height:100px;
 }
-.img-thumb{
-	width:100%;
-	height:200px;
+
+.img-productDetails {
+	width: 400px;
+	border: 10px black solid;
 }
 
 @mixin clearfix {
@@ -16,6 +17,12 @@
     display: table;
     clear: both;
   }
+}
+
+.admin {
+	td, th {
+		padding: 8px;
+	}
 }
 
 .img-thb {

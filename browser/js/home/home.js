@@ -31,6 +31,8 @@ app.filter('categoryFilter', function () {
 app.controller('HomePageController', function ($scope, $stateParams, AdminFactory, AnimalsFactory) {   
 
 	$scope.filters = [];
+	$scope.pets = [];
+	$scope.searchField = { text: "" };
 
 	if (!$scope.categories) AdminFactory.getCategories()
 		.then(function(categories){
@@ -62,6 +64,14 @@ app.controller('HomePageController', function ($scope, $stateParams, AdminFactor
 				}
 			}
 		}
+		
+	};
+
+	$scope.searchBy = function() {
+		
+		AnimalsFactory.getAllAnimals( $scope.searchField.text ).then(function(pets){
+		$scope.pets = pets;
+	});
 		
 	};
 });

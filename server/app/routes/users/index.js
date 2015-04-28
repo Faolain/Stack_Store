@@ -52,7 +52,7 @@ router.put('/changeOwnEmail/', ensureAuthenticated, function (req, res, next) {
       //console.log('req',req.body);
       user.save(function(err, savedUser){
          if (err)  { 
-            console.log(err);
+          console.log(err);
             return next(err);
           }
          res.send(savedUser);

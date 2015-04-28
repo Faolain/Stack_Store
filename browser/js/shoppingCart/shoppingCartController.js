@@ -26,6 +26,8 @@ app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootS
 	$scope.sendCartToDB = function(){
 		console.log("HELLO");
 		$scope.getAllItems();
+		//this needs to be updated to other cart
+
 		$http.put('/api/cart/55391ca6891c507716024fd7',$scope.items)
 		.then(function(data){
 				console.log('sending data from front end',data);

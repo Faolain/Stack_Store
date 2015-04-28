@@ -1,7 +1,6 @@
 app.factory('AnimalsFactory', function ($http) {
 
     return {
-
         getAllAnimals: function (searchText) {
 
             var queryParams = {};
@@ -16,7 +15,9 @@ app.factory('AnimalsFactory', function ($http) {
                 return response.data;
             });
             
-        }, getAnimalByID: function (id, populated) {
+        },
+
+        getAnimalByID: function (id) {
 
             return $http.get('/api/animals/'+id ).then(function (response) {
                 return response.data;
@@ -43,34 +44,6 @@ app.factory('AnimalsFactory', function ($http) {
         createReview: function ( content, id ) {
 
             return $http.post( '/api/animals/'+id+"/addReview", { content: content } )
-            .then(function (response) {
-                return response.data;
-            });
-
-        },
-        
-        getAnimalCategoriesMapping: function ( id ) {
-
-            return $http.get('/api/animals/'+id+'/categories').then(function (response) {
-                return response.data;
-            });
-
-        },
-
-        createAnimalCategoryMapping: function ( animal_category ) {
-
-            return $http.post( '/api/animals/'+animal_category.animalID+'/categories', { 
-                categoryArr: animal_category.categoryArr } )
-            .then(function (response) {
-                return response.data;
-            });
-            
-        },
-
-        updateAnimalCategoryMapping: function ( animal_category ) {
-
-            return $http.put( '/api/animals/'+animal_category.animalID+"/categories", { 
-                categoryArr: animal_category.categoryArr } )
             .then(function (response) {
                 return response.data;
             });

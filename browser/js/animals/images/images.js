@@ -29,7 +29,7 @@ app.controller('ImagesController', function ($scope, $stateParams, AnimalsFactor
 			);
 		// We have to do this instead of update the whole body to avoid a cast error for the "reviews" Path
 		}	
-	}
+	};
 
 	$scope.updateImage = function() {
 
@@ -38,7 +38,7 @@ app.controller('ImagesController', function ($scope, $stateParams, AnimalsFactor
 				imgUrl: $scope.pet.imgUrl
 			}
 		);	
-	}
+	};
 
 	$scope.deleteImage = function( index ) {
 
@@ -47,6 +47,6 @@ app.controller('ImagesController', function ($scope, $stateParams, AnimalsFactor
 			{ 	_id: $scope.pet._id,
 				secondaryImgUrls: $scope.pet.secondaryImgUrls}
 		);
-	}
+	};
 	
 });

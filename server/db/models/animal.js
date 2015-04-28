@@ -5,6 +5,7 @@ var User = mongoose.model('User');
 
 var schema = new mongoose.Schema({
     name: {type: String, required: true, unique: true},
+    categories: [{type: String}],
     specie: String,
     description: {type: String, required: true},
     reviews: [{ type: mongoose.Schema.ObjectId, ref: 'review' }],

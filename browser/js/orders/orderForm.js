@@ -6,7 +6,7 @@ app.directive('orderForm', function(){
 		controller: function($scope, orderFactory, $state){
 			$scope.submitOrder = function(){ 
 				var order = {};
-				order.status = 'Pending';
+				order.status = 'Created';
 				order.itemList = orderFactory.makeOrderItems($scope.items);
 				order.billingAddress = $scope.billingAddress;
 				orderFactory.submitOrder(order).then(function(data){

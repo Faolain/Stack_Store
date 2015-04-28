@@ -36,10 +36,11 @@
 			<p>{{order.billingAddress.Country}}</p>
 		</div>
 		
-		
+		<b>Items in Order</b>
 
-		
+		<order-items item="item" ng-repeat="item in order.itemList"></order-items>
 	</div>
+
 
 </div>
 </section>

@@ -63,7 +63,10 @@ router.get('/:id', function (req, res) {
   var id = req.params.id;
 
   Order.findById(id, function (err, order){
-    res.send(order);
+    
+    order.populate('itemList.item',function(err,orderPopulated){
+        res.send(orderPopulated);
+    });
   });
 });
 

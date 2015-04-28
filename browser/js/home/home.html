@@ -2,7 +2,7 @@
     <fullstack-logo></fullstack-logo>
     <rando-greeting></rando-greeting>
 </section-->
-<section id="home"> 
+<section id="home">
 <p><a ui-sref="users">View users</a></p>
 <p><a ui-sref="animals">Create/Edit animals</a></p>
 <p><a ui-sref="categories">Create/Edit categories</a></p>
@@ -16,7 +16,7 @@
 			<button>SEARCH</button>
 		</form>
 		</div>
-		
+
 		<div class="row">
 		<hr><p>Filter by Category:</p>
 		<input type="radio" class="category" ng-model="category.name" value="" checked>All</input>
@@ -31,7 +31,7 @@
 
 		<div ng-repeat="pet in pets | filter:category.name" ng-controller="itemController" class="item">
 			<div>
-				<a ui-sref="details({animalID:pet._id})"><img src={{pet.imgUrl}}></a>
+				<a ui-sref="details({animalID:pet._id})"><img class="img-tmb" src={{pet.imgUrl}}></a>
 			</div>
 			<div>
 				<a ui-sref="details({animalID:pet._id})"><label>{{pet.name}}</label></a>
@@ -56,6 +56,6 @@
 			<button ng-click="clearCart()">Clear Cart</button>
 			<button ng-click="sendCartToDB()">Save Cart</button>
 		</div>
-	
+
 </div>
 </section>

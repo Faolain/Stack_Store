@@ -25,6 +25,7 @@ module.exports = function (app) {
                 done(null, user);
             } else {
                 UserModel.create({
+                    email: profile.emails[0].value,
                     facebook: {
                         id: profile.id
                     }
@@ -42,7 +43,7 @@ module.exports = function (app) {
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),

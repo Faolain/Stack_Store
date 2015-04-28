@@ -13,12 +13,13 @@ app.controller('RegisterCtrl', function ($scope, AuthService, $state) {
     $scope.login = {};
     $scope.error = null;
 
+    //SCOPE METHODS
     $scope.registerUser = function (registerInfo) {
 
         $scope.error = null;
 
         AuthService.signUp(registerInfo).then(function () {
-            $state.go('profile');
+            $state.go('home');
         }).catch(function () {
             $scope.error = 'Invalid signUp credentials.';
         });

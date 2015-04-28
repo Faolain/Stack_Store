@@ -16,6 +16,7 @@ var ensureAdmin = function (req, res, next) {
 
 //get available animals and also filters by name for the search
 router.get('/', function (req, res, next) {
+  
   var obj = {};
 
   if (req.query.search) obj.name = req.query.search;
@@ -69,8 +70,9 @@ router.post('/:id/addReview', function (req, res, next) {
 
   review.save(function (err, review) {
     if (err) return next(err);
-    else {console.log('succes',review);
-    res.send(review);}
+    else {
+      res.send(review);
+    }
   });
 });
 

@@ -1,7 +1,6 @@
 app.directive('cartItems',function(){
 	return {
-		template: 
-			'<div class="row"><img class="checkout-img" src={{item.imgUrl}}></img><p>Item Description: {{item.name}}</p><p>Item Quantity:  {{item.quantity}}</p> Item Total: {{item.quantity*item.price}}</div>',
+		templateUrl: '/js/checkout/cartItem.tmpl.html',
 		restrict: 'E',
 		scope: {
 			item: '='

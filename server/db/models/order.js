@@ -11,9 +11,10 @@ var schema = new mongoose.Schema({
 	    price: Number
 
 	}],
-    billingAddress: 
-	    {firstName: String, 
-	    lastName:String, 
+  promo: {type: mongoose.Schema.Types.ObjectId, ref: 'Promo'},
+    billingAddress:
+	    {firstName: String,
+	    lastName:String,
 	    Company:String,
 	    Address:String,
 	    Address2:String,

@@ -1,12 +1,31 @@
 app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootScope, ShoppingCart, $http) {
-	
+
 	$scope.items = [];
 	$scope.itemQuantity;
+  $scope.itemTotal = 0;
+  $scope.itemTotalDiscounted = null;
+
+  $scope.getTotal = function(){
+      var items = ShoppingCart.getCart();
+      items.forEach(function(element){
+        $scope.itemTotal += element.price * element.quantity;
+      })
+  };
+
+  $scope.getDiscountedTotal = function(){
+      var items = ShoppingCart.getCart();
+      items.forEach(function(element){
+        $scope.itemTotal += element.price * element.quantity;
+      })
+  };
+
 	$scope.getAllItems = function(){
 		$scope.items = ShoppingCart.getCart();
+    $scope.getTotal();
 	};
 	$rootScope.$on('updatedShoppingCart',function(){
-	  	$scope.getAllItems();
+    $scope.getTotal();
+	  $scope.getAllItems();
 	});
 	$scope.clearCart = function(){
 		ShoppingCart.clearCart();
@@ -24,7 +43,6 @@ app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootS
 	};
 
 	$scope.sendCartToDB = function(){
-		console.log("HELLO");
 		$scope.getAllItems();
 		//this needs to be updated to other cart
 
@@ -37,6 +55,7 @@ app.controller('ShoppingCartController', function ($scope, $stateParams,  $rootS
 		});
 
 	};
+
 	$scope.getAllItems();
 	if($scope.items.length===0){
 		ShoppingCart.retrieveFromDB();

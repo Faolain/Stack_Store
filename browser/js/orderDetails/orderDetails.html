@@ -1,13 +1,55 @@
 <section>
 
 <div id="front" class="container">
-		
-		<order-details></order-details>
-		
+
+	<div class="col-lg-9">
+		<div class="row">
+			<p>Order ID: </p>
+			<p>{{order._id }}</p>
+		</div>
+		<div class="row">
+			<p>Order Status: </p>
+			<p>{{order.status }}</p>
+		</div>
+		<br><br>
+		<div class="row">
+			<b>Billing Details</b>
+		</div>
+		<div class="row">
+			<p>Name on Order: </p>
+			<p>{{order.billingAddress.firstName+" "+order.billingAddress.lastName }}</p>
+		</div>
+		<div class="row">
+			<p>Address: </p>
+			<p>{{order.billingAddress.Address}}</p>
+		</div>
+		<div class="row">
+			<p>City: </p>
+			<p>{{order.billingAddress.City}}</p>
+		</div>
+		<div class="row">
+			<p>ZIP: </p>
+			<p>{{order.billingAddress.ZIP}}</p>
+		</div>
+		<div class="row">
+			<p>Country: </p>
+			<p>{{order.billingAddress.Country}}</p>
+		</div>
+
 		<b>Items in Order</b>
 
-		<order-items item="item" ng-repeat="item in order.itemList"></order-items>
+    <div class="row" ng-repeat="item in order.itemList">
+      <img class="checkout-img" src={{item.item.imgUrl}}></img>
+      <p>Item Description: {{item.item.name}}</p>
+      <p>Item Quantity:  {{item.quantity}}</p>
+      Item Total: ${{item.quantity*item.price}}
+    </div>
 	</div>
+
+  <h3>After Promotion Applied</h3> </br>
+  <b>Name:</b> {{order.promo.name}}</br>
+  <b>Discount:</b> {{order.promo.discount}}%
+  <b>Total Price</b> $ {{totalPrice-(totalPrice*(order.promo.discount/100))}}
 
 
 </div>

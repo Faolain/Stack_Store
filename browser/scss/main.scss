@@ -19,6 +19,20 @@
   }
 }
 
+
+table {
+    width: 100%;
+}
+
+th{
+    text-align: center;
+    background-color: yellow;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+
 .admin {
 	td, th {
 		padding: 8px;
@@ -28,6 +42,7 @@
 .img-thb {
 	width: 100%;
 	height: 200px;
+
 }
 
 @import 'directives/main';

@@ -8,8 +8,8 @@ var schema = new mongoose.Schema({
 	    quantity: Number,
 	    price: Number
 
-	}]
-
+	}],
+  promo: {type: mongoose.Schema.Types.ObjectId, ref: 'Promo'}
 });
 
 schema.static('updateShoppingCart', function(cartItems,cartId, callback){
@@ -25,6 +25,7 @@ schema.static('updateShoppingCart', function(cartItems,cartId, callback){
 	});
 });
 
-//schema.plugin(deepPopulate, {});
+
+schema.plugin(deepPopulate, {});
 
 module.exports = mongoose.model('ShoppingCart', schema);

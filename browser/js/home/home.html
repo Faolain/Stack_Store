@@ -44,22 +44,6 @@
 		</div>
 	</div>
 	</div>
-
-	<div ng-controller="ShoppingCartController" class="col-lg-3 shopCart">
-		<div class="row">
-			<p>Shopping cart:</p>
-		</div>
-		<div ng-repeat="item in items" class="row">
-			<p>Item Description: {{item.name}}</p>
-			<p>Item Quantity:  <input size="2" ng-model="itemQuantity" placeholder="{{item.quantity}}"></input><button ng-click="updateQuantity(item, itemQuantity)">Update</button></p>
-			<p><a ng-click="removeItem(item)">Remove Item</a></p>
-		</div>
-
-		<div class="row">
-			<button ui-sref="checkout"> Checkout </button>
-			<button ng-click="clearCart()">Clear Cart</button>
-			<button ng-click="sendCartToDB()">Save Cart</button>
-		</div>
-
-</div>
+	
+	<shopping-cart></shopping-cart>
 </section>

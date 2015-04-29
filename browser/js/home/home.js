@@ -29,7 +29,6 @@ app.filter('categoryFilter', function () {
 });
 
 app.controller('HomePageController', function ($scope, $stateParams, AdminFactory, AnimalsFactory) {   
-
 	$scope.filters = [];
 
 	if (!$scope.categories) AdminFactory.getCategories()

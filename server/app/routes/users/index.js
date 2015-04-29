@@ -60,6 +60,9 @@ router.put('/changeOwnEmail/', ensureAuthenticated, function (req, res, next) {
     });
 });
 
+router.get('/getUserId/', ensureAuthenticated, function (req, res, next) {
+  res.send(req.user.id);
+});
 
 //Update a Particular User email address
 router.put('/:id/changeUserEmail/', ensureAuthenticated, function (req, res, next) {

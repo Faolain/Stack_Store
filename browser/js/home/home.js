@@ -67,8 +67,13 @@ app.controller('HomePageController', function ($scope, $stateParams, AdminFactor
 	};
 
 	$scope.searchBy = function() {
+
+		if (!$scope.searchField.text || $scope.searchField.text==="") 
+			AnimalsFactory.getAllAnimals().then(function(pets){
+		$scope.pets = pets;
+		});
 		
-		AnimalsFactory.getAllAnimals( $scope.searchField.text ).then(function(pets){
+		else AnimalsFactory.getAllAnimals( $scope.searchField.text ).then(function(pets){
 		$scope.pets = pets;
 	});
 		

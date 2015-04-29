@@ -25,6 +25,7 @@ schema.static('updateShoppingCart', function(cartItems,cartId, callback){
 	});
 });
 
+
 schema.plugin(deepPopulate, {});
 
 module.exports = mongoose.model('ShoppingCart', schema);

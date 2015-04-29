@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var ShoppingCart = require('../../../db/models/shoppingCart.js');
-var User = require('../../../db/models/user.js');
+var User = require('../../../db/models/user.js');1
 
 
 

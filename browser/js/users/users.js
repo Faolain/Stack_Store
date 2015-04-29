@@ -33,7 +33,7 @@ app.controller('UsersController', function ($scope, $stateParams, AuthService, A
 				console.log("UPDATED!");
 				userPromoted.admin = user.admin;
 			});
-	}
+	};
 
 	$scope.changePassword = function( user, data ) {
 		
@@ -43,6 +43,6 @@ app.controller('UsersController', function ($scope, $stateParams, AuthService, A
 				$scope.data.showDisplay = false;
 				$scope.data.newPassword = "";
 			});
-	}
+	};
 
 });

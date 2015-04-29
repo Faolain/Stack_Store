@@ -11,7 +11,7 @@ var ensureAdmin = function (req, res, next) {
 };
 
 //get all categories
-router.get('/', ensureAdmin, function (req, res, next) {
+router.get('/', function (req, res, next) {
   Category.find({}, function(err, categories) {
     if (err)  { 
         console.log(err);

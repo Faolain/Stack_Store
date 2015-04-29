@@ -54,7 +54,7 @@ module.exports = function (app) {
 
         var authCb = function (err, user) {
 
-            if (err) return next(err);
+            if (err) {console.log("REGISTER ERROR"); return next(err); }
 
             if (!user) {
                 var error = new Error('Invalid signUp credentials');

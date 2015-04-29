@@ -1,13 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-//npm package cors
 var cors = require('cors');
 var Event = require('./server/models/event.js');
 
 
 var app = express();
-// Parse our POST and PUT bodies.
 
 
 //enable CORS
@@ -25,6 +23,7 @@ app.get('/analytics.js', function (req, res) {
 
 
 app.post('/ping', function (req, res, next) {
+
 	//received the analytics information
 	Event.create(req.body,function(err,data){
 		if(err) return next(err);
@@ -40,6 +39,6 @@ var server = app.listen(1338, function () {
 var host = server.address().address;
 var port = server.address().port;
 
-  console.log('Example app listening at http://localhost', host, port);
+  console.log('listening........', host, port);
 
 });

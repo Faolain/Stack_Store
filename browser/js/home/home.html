@@ -7,17 +7,20 @@
 <div id="front" class="container">
 	<div class="col-lg-9">
 		<div class="row">
-		<form action="/search" method="GET">
-			<input class="search" name="searchText" size="100"></input>
+		<form ng-submit="searchBy()"><!-- action="/" method="GET" -->
+			<input class="search" ng-model="searchField.text" name="searchText" size="100"></input>
 			<button>SEARCH</button>
 		</form>
 		</div>
-		
-		<h3>Filter by:</h3>
-		<div ng-repeat="category in categories" ng-controller="HomePageController">
+
+		<div class="row">
+		<table>
+			<tr><h3>Filter by:</h3></tr>
+			<tr>
+		<td ng-repeat="category in categories" class="filterBy" ng-controller="HomePageController">
 			<h4>{{category.name}}</h4>
 			<table><tr>
-				<td ng-repeat="subCategory in category.values">
+				<td ng-repeat="subCategory in category.values" class="filterValues">
 					{{subCategory}}
 	    		</td>
 			</tr>
@@ -27,9 +30,11 @@
 	    		</td>
 	    	</tr>
 			</table>
-
-		</div>
+		</td></tr>
+		</table><br>
+		
 		<button ng-click="filter()">Filter</button>
+	</div>
 		<hr>
 		<div class="row">
 

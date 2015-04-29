@@ -4,51 +4,53 @@
 
 	<div class="col-lg-9">
 		<div class="row">
-			<p>Animal Name: </p>
-			{{pet.name}}
+			<p><label>Animal Name: </label> {{pet.name}}</p>
 		</div>
 		<div class="row">
-			<p>Animal Specie: </p>
-			{{pet.specie}}
+			<p><label>Animal Specie: </label> {{pet.specie}}</p>
 		</div>
 		<div class="row">
-			<img src="{{pet.imgUrl}}"></img>
-			<a ng-click="addToCart(pet)">Add to Cart</a>
+
+			<img class="img-productDetails" src="{{pet.imgUrl}}"></img>
+			<a href="" ng-click="addToCart(pet)">Add to Cart</a>
+		</div><br>
+
+		<div class="row">
+			<p><label>Animal Height: </label> {{pet.height}} ft.</p>
 		</div>
 		<div class="row">
-			<p>Animal Height: </p>
-			{{pet.height}}
+			<p><label>Animal Weight: </label> {{pet.weight}} lbs.</p>
 		</div>
 		<div class="row">
-			<p>Animal Weight: </p>
-			{{pet.weight}}
+			<p><label>Animal Description:</label> {{pet.description}}</p>
 		</div>
 		<div class="row">
-			<p>Animal Description: </p>
-			{{pet.description}}
+			<p><label>Animal Price: </label> {{pet.price}} $USD</p>
+			
 		</div>
 		<div class="row">
-			<p>Animal Price: </p>
-			{{pet.price}}
+			<p><label>Animal Stock: </label>
+				<span ng-if="pet.stock && pet.stock>0">{{pet.stock}}</span>
+				<span ng-if="!pet.stock || pet.stock===0">Sorry. Currently Unavailable. If we don't get it soon it means it is extinct...</span>
+			</p>
 		</div>
+		<hr>
 		<div class="row">
-			<p>Animal Stock: </p>
-			{{pet.stock}}
-		</div>
-		<div class="row">
-			<p>Reviews: </p>
+			<p><label>Reviews: </label></p>
 			<ul ng-repeat="review in pet.reviews">
 				<li>{{review.content}}, {{review.date | date: 'medium'}}, {{review.user.email}}</li>
 			</ul>
 
-			<form ng-if="isLoggedIn()" id="review-form" name="reviewForm" ng-submit="sendReview(newReview)">
+			<form ng-if="isLoggedIn()" id="review-form" name="reviewForm" 
+			ng-submit="reviewForm.content.$dirty &&reviewForm.$valid && sendReview(newReview)">
 
 		    <div class="form-group">
-		        <label for="content">Content:</label>
-		        <input type="textarea" ng-model="newReview.content" id="content">
+		        <label for="content">Want to make a new Review? Go for it! Below please:</label></br>
+		         <span ng-show="reviewForm.$error.minlength">Reviews must have 10 characters at least.</br></span>
+		        <textarea cols="40" rows="5" ng-minlength="10" name="content" ng-model="newReview.content" id="content"></textarea>
 		    </div>
 
-    		<button type="submit" class="btn btn-default">Submit Review</button>
+    		<button type="submit" class="btn btn-success">Submit Review</button>
 			</form>
 		</div>
 	</div>

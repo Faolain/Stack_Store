@@ -18,6 +18,20 @@
   }
 }
 
+table {
+    width: 100%;
+}
+
+th{
+    text-align: center;
+    background-color: yellow;
+    padding: 10px;
+}
+
+td {
+    text-align: center;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

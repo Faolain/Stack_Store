@@ -14,8 +14,6 @@ app.controller('OrdersAdminController', function ($scope, $stateParams, OrdersAd
 
 	OrdersAdminFactory.getAllOrders().then(function(orders){
 		$scope.orders = orders;
-		console.log(typeof orders);
-
 	});
 
 	$scope.editStatus = function(order,newStatus){
@@ -31,7 +29,7 @@ app.controller('OrdersAdminController', function ($scope, $stateParams, OrdersAd
 
 
 
-		
+
 	$scope.beingEdited = undefined;
 
 

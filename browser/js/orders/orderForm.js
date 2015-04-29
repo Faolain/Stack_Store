@@ -1,16 +1,42 @@
 'use strict';
 app.directive('orderForm', function(){
-	return { 
+	return {
 		restrict: 'E',
 		templateUrl: "js/orders/orderForm.html",
-		controller: function($scope, orderFactory, $state){
-			$scope.submitOrder = function(){ 
+		controller: function($scope, orderFactory, $state, $http){
+
+      $scope.promoError = "";
+
+      $scope.promoApplication;
+
+      $scope.applyPromo = function(promo){
+        return $http.get('/api/promos/'+promo).then(function (response) {
+          if (!response.data[0]){
+            $scope.itemTotalDiscounted = "";
+            $scope.promoError = "Sorry that promo is not valid";
+          } else {
+            var discountPercent = (response.data[0].discount/100);
+            $scope.itemTotalDiscounted = $scope.itemTotal - ($scope.itemTotal * discountPercent);
+            $scope.promoError = "";
+            $scope.promoApplication = response.data[0]._id
+          }
+        });
+      };
+
+      $scope.getPromoId = function(promo){
+        return $http.get('/api/promos/'+promo).then(function (response) {
+          return response.data[0]._id;
+        });
+      };
+
+			$scope.submitOrder = function(promo_name){
 				var order = {};
 				order.status = 'Created';
 				order.itemList = orderFactory.makeOrderItems($scope.items);
 				order.billingAddress = $scope.billingAddress;
+        order.promo = $scope.promoApplication;
 				orderFactory.submitOrder(order).then(function(data){
-				
+
 					$state.go('home');
 
 			}).catch(function(err){
@@ -40,14 +66,16 @@ app.factory('orderFactory',function($http){
 		makeOrderItems: function(items){
 			return items.map(function(item){
 				var newItem = {};
-				console.log('new item id',item);
 				newItem.item = item._id;
 				newItem.quantity = item.quantity;
 				newItem.price = item.price;
 				return newItem;
 			});
 
-		}
+		},
+    getPromoId: function(order){
+      return $http.post('/api/orders',order);
+    }
 	};
 
 });

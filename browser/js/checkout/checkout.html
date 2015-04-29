@@ -2,9 +2,13 @@
 		<div class="row">
 			<p>You're purchasing this....</p>
 		</div>
-		
+
 			<cart-items item="item" ng-repeat="item in items"></cart-items>
+      <div >
+        Before Discounted Price: {{itemTotal}}
+        <div> Discounted Total: {{itemTotalDiscounted}}</div>
+      </div>
 
 		<order-form></order-form>
-	
+
 	</div>

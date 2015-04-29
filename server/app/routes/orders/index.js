@@ -30,10 +30,10 @@ router.post('/', ensureAuthenticated, function(req,res,next){
       //   console.log('successfully added order to user');
       //   if(!userWithOrder){return next(err);}
       //   else
-      //   res.send(userWithOrder);    
+      //   res.send(userWithOrder);
       // });
       console.log("sucessfully saved order",order);
-      res.send(order);    
+      res.send(order);
   });
 });
 
@@ -63,8 +63,8 @@ router.get('/:id', function (req, res) {
   var id = req.params.id;
 
   Order.findById(id, function (err, order){
-    
-    order.populate('itemList.item',function(err,orderPopulated){
+
+    order.populate('itemList.item promo',function(err,orderPopulated){
         res.send(orderPopulated);
     });
   });
@@ -86,8 +86,8 @@ router.put('/:id', ensureAdmin, function (req, res, next) {
        }
 
     });
-   
-     
+
+
    });
 });
 

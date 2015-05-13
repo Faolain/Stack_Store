@@ -28,7 +28,7 @@ app.post('/ping', function (req, res, next) {
 	Event.create(req.body,function(err,data){
 		if(err) return next(err);
 		else{
-			//console.log(data);
+			console.log(data);
 			res.send(200);
 
 		}
